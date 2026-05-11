@@ -425,7 +425,7 @@ section{padding:64px 22px}
 .loc-btn-wrap{display:flex;justify-content:center;margin-top:20px}
 
 /* ── CALENDAR ─────────────────────────────────────────── */
-#calendar{background:var(--ink3);padding:54px 22px;text-align:center;border-top:1px solid rgba(189,139,45,.22);border-bottom:1px solid rgba(189,139,45,.22);}
+#calendar{background:var(--ink3);padding:54px 22px;text-align:center;border-top:1px solid rgba(189,139,45,.22);border-bottom:1px solid rgba(189,139,45,.22);position:relative;overflow:hidden;}
 .cal-sub{font-size:15px;color:var(--cream);opacity:.72;line-height:1.9;margin:14px 0 28px}
 
 
@@ -459,7 +459,7 @@ section{padding:64px 22px}
 .dc-note strong{font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--peach-accent);display:block;margin-bottom:6px;}
 
 /* ── FAMILY ───────────────────────────────────────────── */
-#family{background:var(--ink)}
+#family{background:var(--ink);position:relative;overflow:hidden}
 .fam-card{text-align:center;border:1px solid rgba(189,139,45,.32);border-radius:14px;padding:28px 36px;background:rgba(189,139,45,.06);max-width:360px;margin:0 auto;transition:transform .45s var(--spring),border-color .3s;}
 .fam-card:hover{transform:translateY(-4px);border-color:rgba(189,139,45,.3)}
 .fam-ttl{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--peach);text-align:center;margin:0 0 14px;}
@@ -469,7 +469,7 @@ section{padding:64px 22px}
 
 
 /* ── GIFTS ────────────────────────────────────────────── */
-#gifts{background:var(--ink3)}
+#gifts{background:var(--ink3);position:relative;overflow:hidden}
 .gf-sub{text-align:center;font-size:16px;color:var(--cream);opacity:.78;line-height:1.9;margin:14px 0 28px}
 .gf-card{display:block;text-decoration:none;background:var(--ink2);border:1px solid rgba(189,139,45,.28);border-radius:10px;padding:24px 22px;margin-bottom:12px;position:relative;overflow:hidden;text-align:center;transition:transform .25s var(--spring),border-color .25s;}
 .gf-card::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(to right,transparent,var(--peach-accent),transparent);opacity:.6}
@@ -531,11 +531,16 @@ section{padding:64px 22px}
 .el-credit{display:inline-flex;align-items:center;gap:8px;color:var(--peach);opacity:.75;font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:500;letter-spacing:1.5px;text-decoration:none;transition:opacity .25s;}
 .el-credit:hover{opacity:.85}
 
-/* ── FLORAL SECTION BACKGROUNDS ──────────────────────── */
+/* ── SECTION BACKGROUNDS ─────────────────────────────── */
 .sec-floral{
   position:absolute;inset:0;z-index:0;pointer-events:none;
   background-size:cover;background-position:center;background-repeat:no-repeat;
   opacity:.50;
+}
+.sec-floral::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(26,20,16,.55) 0%, rgba(26,20,16,.25) 40%, rgba(26,20,16,.25) 60%, rgba(26,20,16,.55) 100%);
+  pointer-events:none;
 }
 .sec-floral ~ *{position:relative;z-index:1;}
 
@@ -819,7 +824,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 
 <!-- ════════════════ 3. UBICACIONES ═════════════════════ -->
 <section id="location">
-  <div class="sec-floral" style="background-image:url('./bg-floral-4.jpeg')"></div>
+  <div class="sec-floral" style="background-image:url('./bg-vintage-2.jpeg');opacity:.35"></div>
   <span class="lbl">¿Dónde y cuándo?</span>
   <h2 class="ttl">La Celebración</h2>
   <div class="gline"></div>
@@ -865,6 +870,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 
 <!-- ════════════════ 4. CALENDAR ════════════════════════ -->
 <section id="calendar">
+  <div class="sec-floral" style="background-image:url('./bg-vintage-1.jpeg');opacity:.28"></div>
   <span class="lbl">No lo olvides</span>
   <h2 class="ttl" style="font-size:26px">Guarda la Fecha</h2>
   <div class="gline"></div>
@@ -925,7 +931,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 
 <!-- ════════════════ 6. DRESSCODE ═══════════════════════ -->
 <section id="dresscode">
-  <div class="sec-floral" style="background-image:url('./bg-floral-5.jpeg')"></div>
+  <div class="sec-floral" style="background-image:url('./bg-vintage-3.jpeg');opacity:.33"></div>
   <span class="lbl">Vestimenta</span>
   <h2 class="ttl">Código de Vestimenta</h2>
   <div class="gline"></div>
@@ -995,6 +1001,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 
 <!-- ════════════════ 7. FAMILIA ═════════════════════════ -->
 <section id="family">
+  <div class="sec-floral" style="background-image:url('./bg-vintage-4.jpeg');opacity:.30"></div>
   <span class="lbl">Con amor de nuestras familias</span>
   <h2 class="ttl">Papás de los Novios</h2>
   <div class="gline"></div>
@@ -1022,7 +1029,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 
 <!-- ════════════════ 8. GALERÍA ════════════════════════ -->
 <section id="gallery">
-  <div class="sec-floral" style="background-image:url('./bg-floral-6.jpeg');opacity:.45"></div>
+  <div class="sec-floral" style="background-image:url('./bg-vintage-6.jpeg');opacity:.38"></div>
   <div class="gallery-head">
     <span class="lbl">Nuestros Momentos</span>
     <h2 class="ttl">Recuerdos</h2>
@@ -1117,7 +1124,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 
 <!-- ════════════════ 10. RSVP ═══════════════════════════ -->
 <section id="rsvp">
-  <div class="sec-floral" style="background-image:url('./bg-floral-3.jpeg')"></div>
+  <div class="sec-floral" style="background-image:url('./bg-vintage-5.jpeg');opacity:.30"></div>
   <span class="lbl">Confirmación de asistencia</span>
   <h2 class="ttl">¿Nos acompañas?</h2>
   <div class="gline"></div>
