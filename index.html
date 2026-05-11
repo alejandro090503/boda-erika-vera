@@ -616,7 +616,13 @@ section{position:relative}
 .itv3-item:last-child{padding-bottom:10px;}
 
 /* ── GALERÍA / WHEEL ─────────────────────────────────── */
-#gallery{background:var(--ink);padding:60px 0 80px;}
+#gallery{background:var(--ink);padding:60px 0 80px;position:relative;overflow:hidden;}
+#gallery::before,#gallery::after{
+  content:'';position:absolute;left:0;right:0;height:90px;
+  z-index:5;pointer-events:none;
+}
+#gallery::before{top:0;background:linear-gradient(to bottom,var(--ink) 0%,rgba(255,255,255,.85) 35%,rgba(255,255,255,0) 100%);}
+#gallery::after{bottom:0;background:linear-gradient(to top,var(--ink) 0%,rgba(255,255,255,.85) 35%,rgba(255,255,255,0) 100%);}
 .gallery-head{text-align:center;margin-bottom:50px;padding:0 26px;}
 .gallery-sub{font-family:'Great Vibes',cursive;color:var(--deep-violet);font-size:34px;line-height:1;margin-top:8px;opacity:.9;}
 .wheel-stage{position:relative;width:100%;height:min(960px,120vw);max-width:1080px;margin:0 auto;padding:clamp(20px,4vw,60px);display:flex;align-items:center;justify-content:center;}
