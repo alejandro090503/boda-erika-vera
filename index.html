@@ -175,6 +175,11 @@ section{padding:64px 22px}
   align-items:center;justify-content:center;
   position:relative;overflow:hidden;padding:48px 28px 88px;
 }
+#hero::after{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:130px;
+  background:linear-gradient(to top,var(--ink) 0%,rgba(255,255,255,.95) 30%,rgba(255,255,255,.55) 65%,transparent 100%);
+  z-index:2;pointer-events:none;
+}
 .h-bg{
   position:absolute;top:-20%;left:0;right:0;bottom:-20%;
   z-index:0;will-change:transform;
@@ -233,6 +238,7 @@ section{padding:64px 22px}
 @keyframes hRingBreathe{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.025);opacity:1}}
 @keyframes hRingRotate{to{transform:rotate(360deg)}}
 .h-particles{position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
+.sec-particles{position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
 .meteor{position:absolute;top:0;left:0;will-change:transform,opacity;overflow:visible}
 .h-cnt{position:relative;z-index:4;text-align:center;display:flex;flex-direction:column;align-items:center;}
 .h-we{font-size:14px;letter-spacing:5px;text-transform:uppercase;color:var(--peach);text-shadow:0 1px 8px rgba(255,255,255,.9);}
@@ -280,7 +286,13 @@ section{padding:64px 22px}
 @keyframes scrollLine{0%{transform:scaleY(0);opacity:1}80%{transform:scaleY(1);opacity:.8}100%{transform:scaleY(1);opacity:0}}
 
 /* ── INTRO QUOTE ─────────────────────────────────────── */
-#intro-quote{background:var(--ink);padding:52px 28px;text-align:center}
+#intro-quote{background:var(--ink);padding:80px 28px 52px;text-align:center;position:relative}
+#intro-quote::before{
+  content:'';position:absolute;left:0;right:0;top:0;height:90px;
+  background:linear-gradient(to bottom,var(--ink) 0%,rgba(255,255,255,.85) 40%,transparent 100%);
+  pointer-events:none;z-index:0;
+}
+#intro-quote > *{position:relative;z-index:1;}
 .iq-text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;font-weight:400;line-height:2;color:var(--cream);opacity:.92;max-width:340px;margin:0 auto;}
 .iq-orn{color:var(--deep-violet);font-size:9px;letter-spacing:12px;margin-bottom:18px;opacity:.75}
 
@@ -1225,6 +1237,7 @@ function dismissLoader() {
     addAuras();
     heroAnim();
     spawnParticles();
+    spawnSectionPetals();
     scrollAnims();
   }
   loader.addEventListener('transitionend', function handler(e) {
@@ -1263,16 +1276,20 @@ function heroAnim() {
 }
 
 /* ── PARTÍCULAS — pétalos cayendo ───────────────────── */
-function spawnParticles() {
-  const c = document.getElementById('hPart');
+function spawnParticles(container, opts) {
+  const c = container || document.getElementById('hPart');
   if (!c) return;
+  opts = opts || {};
+  const MAX = opts.max || 30;
+  const SPAWN_RATE = opts.spawnRate || 0.09;
+  const SEED = opts.seed || 8;
   const PETAL_COLORS = ['#3c071b','#1a0a52','#7a4a00','#263e0f','#551029','#a96800'];
   const PETAL_PATHS = [
     'M12,2 Q18,6 16,14 Q14,20 12,22 Q10,20 8,14 Q6,6 12,2Z',
     'M12,1 Q20,8 17,16 Q14,22 12,23 Q10,22 7,16 Q4,8 12,1Z',
     'M12,3 Q17,5 15,13 Q13,19 12,21 Q11,19 9,13 Q7,5 12,3Z'
   ];
-  const state = { W:0, H:0, floor:0, particles:[], MAX_TOTAL:30 };
+  const state = { W:0, H:0, floor:0, particles:[], MAX_TOTAL:MAX };
   function measure(){ const r=c.getBoundingClientRect(); state.W=r.width; state.H=r.height; state.floor=r.height+20; }
   measure();
   window.addEventListener('resize', measure, { passive:true });
@@ -1317,9 +1334,25 @@ function spawnParticles() {
       if (p.phase==='out') gsap.to(p.el, { opacity:0, duration:.5 });
       p.el.style.transform = `translate(${p.x}px,${p.y}px) rotate(${p.rot}deg)`;
     });
-    if (Math.random() < 0.09 && state.particles.length < state.MAX_TOTAL) create();
+    if (Math.random() < SPAWN_RATE && state.particles.length < state.MAX_TOTAL) create();
   })();
-  for (let i = 0; i < 8; i++) create();
+  for (let i = 0; i < SEED; i++) create();
+}
+
+/* ── PÉTALOS EN SECCIONES ────────────────────────────── */
+function spawnSectionPetals() {
+  const sectionIds = ['location','itinerary','qr-album','family','rsvp'];
+  sectionIds.forEach(id => {
+    const sec = document.getElementById(id);
+    if (!sec) return;
+    if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
+    if (getComputedStyle(sec).overflow !== 'hidden') sec.style.overflow = 'hidden';
+    const c = document.createElement('div');
+    c.className = 'sec-particles';
+    c.setAttribute('aria-hidden','true');
+    sec.appendChild(c);
+    spawnParticles(c, { max: 14, spawnRate: 0.05, seed: 4 });
+  });
 }
 
 /* ── COUNTDOWN ───────────────────────────────────────── */
