@@ -1283,6 +1283,7 @@ function spawnParticles(container, opts) {
   const MAX = opts.max || 30;
   const SPAWN_RATE = opts.spawnRate || 0.09;
   const SEED = opts.seed || 8;
+  const FALL_TO_FLOOR = opts.fallToFloor || false;
   const PETAL_COLORS = ['#3c071b','#1a0a52','#7a4a00','#263e0f','#551029','#a96800'];
   const PETAL_PATHS = [
     'M12,2 Q18,6 16,14 Q14,20 12,22 Q10,20 8,14 Q6,6 12,2Z',
@@ -1310,12 +1311,12 @@ function spawnParticles(container, opts) {
     c.appendChild(el);
 
     const x = Math.random() * state.W;
-    const vy = 0.3 + Math.random() * 0.35;
+    const vy = FALL_TO_FLOOR ? (0.7 + Math.random() * 0.6) : (0.3 + Math.random() * 0.35);
     const vx = (Math.random() - 0.5) * 0.25;
     const vr = (Math.random() - 0.5) * 1.2;
     const sway = 0.3 + Math.random() * 0.5;
     const swaySpd = 0.008 + Math.random() * 0.012;
-    const life = 280 + Math.floor(Math.random() * 200);
+    const life = FALL_TO_FLOOR ? 99999 : (280 + Math.floor(Math.random() * 200));
     const p = { el, x, y: -sz, vy, vx, vr, rot:Math.random()*360, life, age:0, phase:'in', sway, swaySpd, swayOff:Math.random()*Math.PI*2 };
     state.particles.push(p);
     gsap.to(el, { opacity: brt, duration:.6, ease:'power2.out' });
@@ -1351,7 +1352,7 @@ function spawnSectionPetals() {
     c.className = 'sec-particles';
     c.setAttribute('aria-hidden','true');
     sec.appendChild(c);
-    spawnParticles(c, { max: 14, spawnRate: 0.05, seed: 4 });
+    spawnParticles(c, { max: 14, spawnRate: 0.05, seed: 4, fallToFloor: true });
   });
 }
 
