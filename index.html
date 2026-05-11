@@ -142,7 +142,9 @@ section{padding:64px 22px}
 /* ── HELPERS ──────────────────────────────────────────── */
 .lbl{font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--peach);text-align:center;display:block}
 .ttl{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:400;text-align:center;color:var(--cream);line-height:1.25;margin-top:6px}
-.gline{width:50px;height:1px;background:linear-gradient(to right,transparent,var(--peach-accent),transparent);margin:18px auto}
+.gline{width:80px;height:14px;margin:18px auto;background:none;position:relative;display:flex;align-items:center;justify-content:center}
+.gline::before{content:'';position:absolute;width:100%;height:1px;background:linear-gradient(to right,transparent,var(--peach-accent),transparent)}
+.gline::after{content:'✦';position:absolute;font-size:8px;color:var(--peach-accent);background:var(--ink);padding:0 10px;letter-spacing:0}
 
 .btn{
   display:flex;align-items:center;justify-content:center;gap:9px;
@@ -218,12 +220,6 @@ section{padding:64px 22px}
 .h-ring-3{inset:-78px;border-color:rgba(189,139,45,.07);animation:hRingBreathe 9s ease-in-out infinite reverse}
 @keyframes hRingBreathe{0%,100%{transform:scale(1);opacity:.7}50%{transform:scale(1.025);opacity:1}}
 @keyframes hRingRotate{to{transform:rotate(360deg)}}
-.h-wave{position:absolute;left:0;right:0;height:48px;pointer-events:none;overflow:hidden;z-index:2;}
-.h-wave-top{top:64px}
-.h-wave-bot{bottom:78px;transform:scaleY(-1)}
-.h-wave svg{width:220%;height:100%;display:block;animation:hWaveSlide 30s linear infinite;will-change:transform;}
-.h-wave-bot svg{animation-duration:38s;animation-direction:reverse}
-@keyframes hWaveSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 .h-particles{position:absolute;inset:0;z-index:3;overflow:hidden;pointer-events:none}
 .meteor{position:absolute;top:0;left:0;will-change:transform,opacity;overflow:visible}
 .h-cnt{position:relative;z-index:4;text-align:center;display:flex;flex-direction:column;align-items:center;}
@@ -279,7 +275,7 @@ section{padding:64px 22px}
 #countdown{
   position:relative;overflow:hidden;
   padding:80px 20px 72px;
-  background:linear-gradient(180deg, var(--ink2) 0%, var(--ink3) 100%);
+  background:var(--ink);
 }
 #countdown::before{
   content:'';position:absolute;inset:0;pointer-events:none;
@@ -425,12 +421,12 @@ section{padding:64px 22px}
 .loc-btn-wrap{display:flex;justify-content:center;margin-top:20px}
 
 /* ── CALENDAR ─────────────────────────────────────────── */
-#calendar{background:var(--ink3);padding:54px 22px;text-align:center;border-top:1px solid rgba(189,139,45,.22);border-bottom:1px solid rgba(189,139,45,.22);position:relative;overflow:hidden;}
+#calendar{background:var(--ink);padding:54px 22px;text-align:center;position:relative;overflow:hidden;}
 .cal-sub{font-size:15px;color:var(--cream);opacity:.72;line-height:1.9;margin:14px 0 28px}
 
 
 /* ── DRESSCODE ────────────────────────────────────────── */
-#dresscode{background:var(--ink2)}
+#dresscode{background:var(--ink)}
 .dc-card{border:1px solid rgba(189,139,45,.22);border-radius:16px;overflow:hidden;background:rgba(250,248,243,.45);margin-bottom:24px}
 .dc-rows{padding:24px 20px 20px}
 .dc-row{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px 0}
@@ -469,7 +465,7 @@ section{padding:64px 22px}
 
 
 /* ── GIFTS ────────────────────────────────────────────── */
-#gifts{background:var(--ink3);position:relative;overflow:hidden}
+#gifts{background:var(--ink);position:relative;overflow:hidden}
 .gf-sub{text-align:center;font-size:16px;color:var(--cream);opacity:.78;line-height:1.9;margin:14px 0 28px}
 .gf-card{display:block;text-decoration:none;background:var(--ink2);border:1px solid rgba(189,139,45,.28);border-radius:10px;padding:24px 22px;margin-bottom:12px;position:relative;overflow:hidden;text-align:center;transition:transform .25s var(--spring),border-color .25s;}
 .gf-card::before{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(to right,transparent,var(--peach-accent),transparent);opacity:.6}
@@ -521,7 +517,7 @@ section{padding:64px 22px}
 .rsvp-submit-btn{margin-top:6px}
 
 /* ── FOOTER ───────────────────────────────────────────── */
-#footer{background:var(--ink2);padding:62px 22px;text-align:center;border-top:1px solid rgba(189,139,45,.25)}
+#footer{background:var(--ink);padding:62px 22px;text-align:center}
 .ft-orn{color:var(--peach-accent);letter-spacing:10px;font-size:10px;margin-bottom:20px;opacity:.7}
 .ft-nms{font-family:'Great Vibes',cursive;font-size:54px;color:var(--peach);line-height:1.1;animation:ftNameGlow 7s ease-in-out infinite}
 @keyframes ftNameGlow{0%,100%{text-shadow:none}50%{text-shadow:0 0 45px rgba(189,139,45,.35),0 0 90px rgba(189,139,45,.1)}}
@@ -533,27 +529,15 @@ section{padding:64px 22px}
 
 /* ── SECTION BACKGROUNDS ─────────────────────────────── */
 .sec-floral{
-  position:absolute;inset:0;z-index:0;pointer-events:none;
+  position:absolute;inset:-40px;z-index:0;pointer-events:none;
   background-size:cover;background-position:center;background-repeat:no-repeat;
   opacity:.50;
-}
-.sec-floral::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg, rgba(26,20,16,.35) 0%, rgba(26,20,16,.10) 40%, rgba(26,20,16,.10) 60%, rgba(26,20,16,.35) 100%);
-  pointer-events:none;
+  -webkit-mask-image:radial-gradient(ellipse 92% 88% at 50% 50%, black 35%, transparent 68%);
+  mask-image:radial-gradient(ellipse 92% 88% at 50% 50%, black 35%, transparent 68%);
 }
 .sec-floral ~ *{position:relative;z-index:1;}
 
-/* ── GENERIC SECTION WAVES ────────────────────────────── */
-.sec-wave{position:absolute;left:0;right:0;height:38px;pointer-events:none;z-index:0;overflow:hidden;}
-.sec-wave-top{top:0}.sec-wave-bot{bottom:0;transform:scaleY(-1)}
-.sec-wave svg{display:block;width:200%;height:100%;animation:secWaveSlide 26s linear infinite;will-change:transform;}
-.sec-wave-bot svg{animation-duration:32s;animation-direction:reverse}
-@keyframes secWaveSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 section{position:relative}
-.sec-wave{z-index:0}
-section.has-sec-waves{padding-top:84px;padding-bottom:86px}
-#footer.has-sec-waves{padding-top:84px;padding-bottom:80px}
 
 /* ── SECTION MEDAL ────────────────────────────────────── */
 .sec-medal{position:relative;width:56px;height:56px;margin:0 auto 18px;}
@@ -563,12 +547,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 @keyframes secMedalRotate{to{transform:rotate(360deg)}}
 @keyframes secMedalBreathe{0%,100%{transform:scale(1);opacity:.6}50%{transform:scale(1.08);opacity:1}}
 
-/* ── SHIMMER + WIND ORNAMENTS ─────────────────────────── */
-.gline{position:relative;overflow:hidden}
-.gline::after{content:'';position:absolute;top:0;left:-100px;width:80px;height:100%;background:linear-gradient(90deg,transparent,rgba(232,201,110,.85),transparent);animation:glineSweep 5s ease-in-out infinite;pointer-events:none;}
-@keyframes glineSweep{0%{left:-100px;opacity:0}20%{opacity:1}100%{left:calc(100% + 100px);opacity:0}}
-.lbl{animation:lblBreathe 7s ease-in-out infinite}
-@keyframes lblBreathe{0%,100%{letter-spacing:3px}50%{letter-spacing:4px}}
+/* ── CLASSICAL ORNAMENTS ──────────────────────────────── */
 .wind-orn{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px;font-size:5px;letter-spacing:10px;color:var(--peach-accent);pointer-events:none;animation:windOrnPulse 9s ease-in-out infinite;}
 .wind-orn::before,.wind-orn::after{content:'';flex:1;max-width:36px;height:1px;background:linear-gradient(to right,transparent,rgba(189,139,45,.55));}
 .wind-orn::after{background:linear-gradient(to left,transparent,rgba(189,139,45,.55))}
@@ -652,7 +631,7 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 .itv3-item:last-child{padding-bottom:10px;}
 
 /* ── GALERÍA / WHEEL ─────────────────────────────────── */
-#gallery{background:var(--ink2);padding:60px 0 80px;}
+#gallery{background:var(--ink);padding:60px 0 80px;}
 .gallery-head{text-align:center;margin-bottom:50px;padding:0 26px;}
 .gallery-sub{font-family:'Great Vibes',cursive;color:var(--peach-accent);font-size:32px;line-height:1;margin-top:8px;}
 .wheel-stage{position:relative;width:100%;height:min(960px,120vw);max-width:1080px;margin:0 auto;padding:clamp(20px,4vw,60px);display:flex;align-items:center;justify-content:center;}
@@ -734,18 +713,6 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
   <div class="h-ov"></div>
   <div class="h-frame"></div>
 
-  <div class="h-wave h-wave-top" aria-hidden="true">
-    <svg viewBox="0 0 1760 48" preserveAspectRatio="none">
-      <path d="M0,24 Q110,8 220,24 T440,24 T660,24 T880,24 T1100,24 T1320,24 T1540,24 T1760,24" fill="none" stroke="rgba(201,60,24,.38)" stroke-width="1"/>
-      <path d="M0,34 Q110,18 220,34 T440,34 T660,34 T880,34 T1100,34 T1320,34 T1540,34 T1760,34" fill="none" stroke="rgba(201,60,24,.18)" stroke-width=".8"/>
-    </svg>
-  </div>
-  <div class="h-wave h-wave-bot" aria-hidden="true">
-    <svg viewBox="0 0 1760 48" preserveAspectRatio="none">
-      <path d="M0,24 Q110,40 220,24 T440,24 T660,24 T880,24 T1100,24 T1320,24 T1540,24 T1760,24" fill="none" stroke="rgba(201,60,24,.38)" stroke-width="1"/>
-      <path d="M0,14 Q110,30 220,14 T440,14 T660,14 T880,14 T1100,14 T1320,14 T1540,14 T1760,14" fill="none" stroke="rgba(201,60,24,.18)" stroke-width=".8"/>
-    </svg>
-  </div>
 
   <div class="h-rings" aria-hidden="true">
     <div class="h-ring h-ring-1"></div>
@@ -1249,7 +1216,6 @@ function dismissLoader() {
   function finishDismiss() {
     if (!document.getElementById('loader')) return;
     loader.remove();
-    addSectionWaves();
     addSectionMedals();
     addCorners();
     addWindOrns();
@@ -1502,29 +1468,6 @@ function scrollAnims() {
 }
 
 
-/* ── INJECT SECTION WAVES ─────────────────────────────── */
-function addSectionWaves() {
-  const targets = ['intro-quote','calendar','itinerary','qr-album','gifts','dresscode','family','rsvp'];
-  const footer  = document.getElementById('footer');
-  const els = targets.map(id => document.getElementById(id)).filter(Boolean);
-  if (footer) els.push(footer);
-
-  const wavePaths = {
-    top: `<path d="M0,19 Q110,6 220,19 T440,19 T660,19 T880,19 T1100,19 T1320,19 T1540,19 T1760,19" fill="none" stroke="rgba(201,60,24,.28)" stroke-width="1"/><path d="M0,26 Q110,13 220,26 T440,26 T660,26 T880,26 T1100,26 T1320,26 T1540,26 T1760,26" fill="none" stroke="rgba(201,60,24,.14)" stroke-width=".8"/>`,
-    bot: `<path d="M0,19 Q110,32 220,19 T440,19 T660,19 T880,19 T1100,19 T1320,19 T1540,19 T1760,19" fill="none" stroke="rgba(201,60,24,.28)" stroke-width="1"/><path d="M0,12 Q110,25 220,12 T440,12 T660,12 T880,12 T1100,12 T1320,12 T1540,12 T1760,12" fill="none" stroke="rgba(201,60,24,.14)" stroke-width=".8"/>`
-  };
-
-  els.forEach(sec => {
-    sec.classList.add('has-sec-waves');
-    ['top','bot'].forEach(pos => {
-      const w = document.createElement('div');
-      w.className = `sec-wave sec-wave-${pos}`;
-      w.setAttribute('aria-hidden','true');
-      w.innerHTML = `<svg viewBox="0 0 1760 38" preserveAspectRatio="none">${wavePaths[pos]}</svg>`;
-      sec.insertBefore(w, sec.firstChild);
-    });
-  });
-}
 
 /* ── SECTION MEDALS ──────────────────────────────────── */
 function addSectionMedals() {
