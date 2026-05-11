@@ -1441,6 +1441,29 @@ function initWheel(){
     gsap.fromTo('.wheel-hub', {opacity:0,scale:.3,rotate:-60}, {opacity:1,scale:1,rotate:0,duration:1.4,ease:'back.out(1.6)',
       scrollTrigger:{trigger:'.wheel-stage',start:'top 78%'}});
 
+    gsap.to(wheel, {
+      rotation: 360,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.wheel-stage',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1
+      }
+    });
+    wheel.querySelectorAll('.wheel-item').forEach(function(item){
+      gsap.to(item, {
+        rotation: -360,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.wheel-stage',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      });
+    });
+
     var sparkLayer = document.getElementById('wheel-spark-layer');
     var stageEl = document.querySelector('.wheel-stage');
     var lastSparkMs = 0;
