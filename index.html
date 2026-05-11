@@ -177,25 +177,29 @@ section{padding:64px 22px}
   z-index:0;will-change:transform;
 }
 .h-bg img{
-  width:100%;height:100%;object-fit:cover;object-position:center 40%;
-  filter:brightness(1.05) saturate(.8) contrast(.9);
+  width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  filter:brightness(.92) saturate(.82) contrast(.95);
   display:block;
 }
 .h-ov{
   position:absolute;inset:0;z-index:1;
   background:
+    radial-gradient(ellipse 78% 70% at 50% 42%,
+      transparent 0%,
+      rgba(60,7,27,.18) 55%,
+      rgba(26,10,82,.32) 78%,
+      rgba(10,6,16,.62) 100%),
     linear-gradient(to bottom,
-      rgba(255,255,255,.22) 0%,
-      rgba(255,255,255,.62) 28%,
-      rgba(255,255,255,.72) 60%,
-      rgba(255,255,255,.98) 100%);
+      rgba(255,255,255,.08) 0%,
+      rgba(255,255,255,.18) 60%,
+      rgba(255,255,255,.85) 92%,
+      rgba(255,255,255,1) 100%);
 }
 .h-ov::after{
-  content:'';position:absolute;
-  left:50%;top:48%;transform:translate(-50%,-50%);
-  width:92%;max-width:420px;aspect-ratio:1;
-  background:radial-gradient(circle, rgba(255,255,255,.78) 0%, rgba(255,252,245,.50) 40%, transparent 68%);
-  pointer-events:none;
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 38%, transparent 24%, rgba(60,7,27,.10) 60%, rgba(26,10,82,.18) 100%);
+  mix-blend-mode:multiply;
 }
 .h-frame{
   position:absolute;top:20px;left:20px;right:20px;bottom:20px;
@@ -498,7 +502,7 @@ section{padding:64px 22px}
 .rsvp-submit-btn{margin-top:6px}
 
 /* ── FOOTER ───────────────────────────────────────────── */
-#footer{background:var(--ink);padding:62px 22px;text-align:center}
+#footer{background:var(--ink);padding:62px 22px;text-align:center;position:relative;overflow:hidden}
 .ft-orn{color:var(--peach-accent);letter-spacing:10px;font-size:10px;margin-bottom:20px;opacity:.7}
 .ft-nms{font-family:'Great Vibes',cursive;font-size:54px;color:var(--peach);line-height:1.1;animation:ftNameGlow 7s ease-in-out infinite}
 @keyframes ftNameGlow{0%,100%{text-shadow:none}50%{text-shadow:0 0 45px rgba(189,139,45,.35),0 0 90px rgba(189,139,45,.1)}}
@@ -510,11 +514,10 @@ section{padding:64px 22px}
 
 /* ── SECTION BACKGROUNDS ─────────────────────────────── */
 .sec-floral{
-  position:absolute;inset:-40px;z-index:0;pointer-events:none;
+  position:absolute;inset:0;z-index:0;pointer-events:none;
   background-size:cover;background-position:center;background-repeat:no-repeat;
-  opacity:.50;
-  -webkit-mask-image:radial-gradient(ellipse 92% 88% at 50% 50%, black 35%, transparent 68%);
-  mask-image:radial-gradient(ellipse 92% 88% at 50% 50%, black 35%, transparent 68%);
+  -webkit-mask-image:linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
+  mask-image:linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
 }
 .sec-floral ~ *{position:relative;z-index:1;}
 
@@ -685,7 +688,7 @@ section{position:relative}
 <!-- ════════════════ 1. HERO ════════════════════════════ -->
 <section id="hero">
   <div class="h-bg" id="heroBg">
-    <img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464528707-0.png"
+    <img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464668531-0.jpeg"
          alt="Erika y Jorge" loading="eager" id="heroPic">
   </div>
   <div class="h-ov"></div>
@@ -736,6 +739,7 @@ section{position:relative}
 
 <!-- ════════════════ 2. CUENTA REGRESIVA ════════════════ -->
 <section id="countdown">
+  <div class="sec-floral" style="background-image:url('./bg-vintage-1.jpeg');opacity:.55"></div>
   <span class="lbl">El gran día llega en</span>
   <h2 class="ttl">Cuenta Regresiva</h2>
   <div class="gline"></div>
@@ -769,7 +773,6 @@ section{position:relative}
 
 <!-- ════════════════ 3. UBICACIONES ═════════════════════ -->
 <section id="location">
-  <div class="sec-floral" style="background-image:url('./bg-vintage-2.jpeg');opacity:.65"></div>
   <span class="lbl">¿Dónde y cuándo?</span>
   <h2 class="ttl">La Celebración</h2>
   <div class="gline"></div>
@@ -815,7 +818,7 @@ section{position:relative}
 
 <!-- ════════════════ 4. CALENDAR ════════════════════════ -->
 <section id="calendar">
-  <div class="sec-floral" style="background-image:url('./bg-vintage-1.jpeg');opacity:.60"></div>
+  <div class="sec-floral" style="background-image:url('./bg-vintage-2.jpeg');opacity:.55"></div>
   <span class="lbl">No lo olvides</span>
   <h2 class="ttl" style="font-size:26px">Guarda la Fecha</h2>
   <div class="gline"></div>
@@ -946,7 +949,6 @@ section{position:relative}
 
 <!-- ════════════════ 7. FAMILIA ═════════════════════════ -->
 <section id="family">
-  <div class="sec-floral" style="background-image:url('./bg-vintage-4.jpeg');opacity:.62"></div>
   <span class="lbl">Con amor de nuestras familias</span>
   <h2 class="ttl">Papás de los Novios</h2>
   <div class="gline"></div>
@@ -974,7 +976,7 @@ section{position:relative}
 
 <!-- ════════════════ 8. GALERÍA ════════════════════════ -->
 <section id="gallery">
-  <div class="sec-floral" style="background-image:url('./bg-vintage-6.jpeg');opacity:.65"></div>
+  <div class="sec-floral" style="background-image:url('./bg-vintage-4.jpeg');opacity:.55"></div>
   <div class="gallery-head">
     <span class="lbl">Nuestros Momentos</span>
     <h2 class="ttl">Recuerdos</h2>
@@ -1026,6 +1028,7 @@ section{position:relative}
 
 <!-- ════════════════ 9. MESA DE REGALOS ═════════════════ -->
 <section id="gifts">
+  <div class="sec-floral" style="background-image:url('./bg-vintage-5.jpeg');opacity:.55"></div>
   <span class="lbl">Tu presencia es nuestro mejor regalo</span>
   <h2 class="ttl">Mesa de Regalos</h2>
   <div class="gline"></div>
@@ -1069,7 +1072,6 @@ section{position:relative}
 
 <!-- ════════════════ 10. RSVP ═══════════════════════════ -->
 <section id="rsvp">
-  <div class="sec-floral" style="background-image:url('./bg-vintage-5.jpeg');opacity:.62"></div>
   <span class="lbl">Confirmación de asistencia</span>
   <h2 class="ttl">¿Nos acompañas?</h2>
   <div class="gline"></div>
@@ -1097,6 +1099,7 @@ section{position:relative}
 
 <!-- ════════════════ 11. FOOTER ═════════════════════════ -->
 <footer id="footer">
+  <div class="sec-floral" style="background-image:url('./bg-vintage-6.jpeg');opacity:.55"></div>
   <div class="ft-orn">✦ · ✦ · ✦</div>
   <div class="ft-nms">Erika &amp; Jorge</div>
   <div class="gline" style="margin-top:22px"></div>
