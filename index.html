@@ -185,7 +185,7 @@ section{padding:64px 22px}
   z-index:0;will-change:transform;
 }
 .h-bg img{
-  width:100%;height:100%;object-fit:cover;object-position:center 30%;
+  width:100%;height:100%;object-fit:cover;object-position:55% 35%;
   filter:brightness(.92) saturate(.82) contrast(.95);
   display:block;
 }
@@ -1484,7 +1484,12 @@ function scrollAnims() {
     }
   });
 
-  gsap.from(['#calendar .cal-sub','#calBtn'], { opacity:0, y:18, scale:.96, duration:.65, stagger:.14, ease:'back.out(1.3)', scrollTrigger:{ trigger:'#calendar', start:'top 84%', once:true } });
+  ScrollTrigger.create({
+    trigger:'#calendar', start:'top 84%', once:true,
+    onEnter() {
+      gsap.from(['#calendar .cal-sub','#calBtn'], { opacity:0, y:18, scale:.96, duration:.65, stagger:.14, ease:'back.out(1.3)' });
+    }
+  });
 
   gsap.from('.dc-card', { opacity:0, y:22, duration:.65, ease, scrollTrigger:{ trigger:'#dresscode', start:'top 84%', once:true } });
   gsap.from('.dc-note', { opacity:0, y:18, duration:.55, ease, scrollTrigger:{ trigger:'#dresscode', start:'top 78%', once:true } });
