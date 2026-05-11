@@ -509,13 +509,7 @@ section{padding:64px 22px}
 .rsvp-sub{text-align:center;font-size:16px;color:var(--cream);opacity:.88;line-height:1.85;margin:14px 0 32px}
 .rsvp-dl{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--peach);font-style:italic}
 .rsvp-form-wrap{position:relative}
-.rsvp-pass-lbl{display:block;font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--peach);margin-bottom:12px;text-align:center;}
-.rsvp-counter{display:flex;align-items:center;justify-content:center;gap:22px;margin-bottom:6px}
-.rsvp-counter-btn{width:44px;height:44px;border-radius:50%;border:1px solid rgba(189,139,45,.35);background:rgba(189,139,45,.08);color:var(--peach-accent);font-size:24px;font-weight:300;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .3s,border-color .3s,transform .15s}
-.rsvp-counter-btn:hover{background:rgba(189,139,45,.18);border-color:var(--peach-accent);transform:scale(1.08)}
-.rsvp-counter-btn:active{transform:scale(.95)}
-.rsvp-counter-btn:disabled{opacity:.25;cursor:default;transform:none}
-.rsvp-pases-num{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:300;color:var(--peach);line-height:1;min-width:48px;text-align:center}
+.rsvp-pases-num{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:300;color:var(--peach);line-height:1;min-width:48px;text-align:center;margin-bottom:2px}
 .rsvp-pases-lbl{display:block;font-size:14px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--peach);opacity:1;text-align:center;margin-bottom:28px;}
 .rsvp-fields{margin-bottom:18px}
 .rsvp-input{
@@ -1112,13 +1106,8 @@ section{position:relative}
   <p class="rsvp-sub">Confirma antes del<br><span class="rsvp-dl">30 de septiembre de 2026</span></p>
 
   <div class="rsvp-form-wrap">
-    <span class="rsvp-pass-lbl">¿Cuántos asistirán?</span>
-    <div class="rsvp-counter">
-      <button type="button" class="rsvp-counter-btn" id="rsvpMinus" onclick="updatePases(-1)" aria-label="Menos">−</button>
-      <p class="rsvp-pases-num" id="rsvpPasesNum">1</p>
-      <button type="button" class="rsvp-counter-btn" id="rsvpPlus" onclick="updatePases(1)" aria-label="Más">+</button>
-    </div>
-    <span class="rsvp-pases-lbl" id="rsvpPasesLbl">persona</span>
+    <p class="rsvp-pases-num" id="rsvpPasesNum">1</p>
+    <span class="rsvp-pases-lbl" id="rsvpPasesLbl">pase</span>
 
     <div class="rsvp-fields" id="rsvpFields"></div>
 
@@ -1236,7 +1225,7 @@ function dismissLoader() {
     addWindOrns();
     addAuras();
     heroAnim();
-    spawnParticles();
+    spawnParticles(null, { fallToFloor: true });
     spawnSectionPetals();
     scrollAnims();
   }
@@ -1399,23 +1388,17 @@ function copyClabe() {
   );
 }
 
-/* ── RSVP · CONTADOR INTERACTIVO ─────────────────────── */
+/* ── RSVP · PASES FIJOS DESDE URL ────────────────────── */
 const WA = '524424791119';
 let _pases = 1;
 const LABELS = ['Tu nombre completo','Acompañante 2','Acompañante 3','Acompañante 4','Acompañante 5'];
 
 function initRSVP() {
-  renderFields();
-}
-
-function updatePases(delta) {
-  const next = _pases + delta;
-  if (next < 1 || next > 5) return;
-  _pases = next;
+  const params = new URLSearchParams(window.location.search);
+  const p = parseInt(params.get('pases'), 10);
+  if (p >= 1 && p <= 5) _pases = p;
   document.getElementById('rsvpPasesNum').textContent = _pases;
-  document.getElementById('rsvpPasesLbl').textContent = _pases === 1 ? 'persona' : 'personas';
-  document.getElementById('rsvpMinus').disabled = _pases <= 1;
-  document.getElementById('rsvpPlus').disabled = _pases >= 5;
+  document.getElementById('rsvpPasesLbl').textContent = _pases === 1 ? 'pase' : 'pases';
   renderFields();
 }
 
