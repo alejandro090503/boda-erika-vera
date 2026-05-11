@@ -637,13 +637,12 @@ section{position:relative}
 /* ── GALERÍA / WHEEL ─────────────────────────────────── */
 #gallery{background:var(--ink);padding:60px 0 80px;position:relative;overflow:hidden;}
 #gallery::before,#gallery::after{
-  content:'';position:absolute;left:0;right:0;height:90px;
+  content:'';position:absolute;left:0;right:0;height:140px;
   z-index:5;pointer-events:none;
 }
-#gallery::before{top:0;background:linear-gradient(to bottom,var(--ink) 0%,rgba(255,255,255,.85) 35%,rgba(255,255,255,0) 100%);}
-#gallery::after{bottom:0;background:linear-gradient(to top,var(--ink) 0%,rgba(255,255,255,.85) 35%,rgba(255,255,255,0) 100%);}
+#gallery::before{top:0;background:linear-gradient(to bottom,var(--ink) 0%,rgba(255,255,255,.92) 40%,rgba(255,255,255,.4) 70%,transparent 100%);}
+#gallery::after{bottom:0;background:linear-gradient(to top,var(--ink) 0%,rgba(255,255,255,.92) 40%,rgba(255,255,255,.4) 70%,transparent 100%);}
 .gallery-head{text-align:center;margin-bottom:50px;padding:0 26px;}
-.gallery-sub{font-family:'Great Vibes',cursive;color:var(--deep-violet);font-size:34px;line-height:1;margin-top:8px;opacity:.9;}
 .wheel-stage{position:relative;width:100%;height:min(960px,120vw);max-width:1080px;margin:0 auto;padding:clamp(20px,4vw,60px);display:flex;align-items:center;justify-content:center;}
 .wheel{position:relative;width:min(840px,92vw);height:min(840px,92vw);border-radius:50%;}
 .wheel-spoke{position:absolute;inset:-2px;border-radius:50%;border:1px solid rgba(189,139,45,0.40);}
@@ -1007,10 +1006,8 @@ section{position:relative}
 <section id="gallery">
   <div class="sec-floral" style="background-image:url('./bg-vintage-4.jpeg');opacity:.55"></div>
   <div class="gallery-head">
-    <span class="lbl">Nuestros Momentos</span>
     <h2 class="ttl">Recuerdos</h2>
     <div class="gline"></div>
-    <div class="gallery-sub">Erika &amp; Jorge</div>
   </div>
   <div class="wheel-stage">
     <div id="wheel-spark-layer" aria-hidden="true"></div>
@@ -1699,10 +1696,6 @@ function initWheel(){
     });
   }
 
-  gsap.fromTo('.gallery-sub',
-    {opacity:0, y:18},
-    {opacity:1, y:0, duration:1,
-     scrollTrigger:{trigger:'.gallery-head', start:'top 80%'}});
 }
 
 /* ── LIGHTBOX ───────────────────────────────────────── */
