@@ -372,49 +372,57 @@ section{padding:64px 22px}
              radial-gradient(circle at 78% 72%, rgba(201,60,24,.03) 0%, transparent 42%);
 }
 #location>*:not(.sec-floral){position:relative;z-index:1}
-.loc-card{
-  background:linear-gradient(180deg, rgba(250,248,243,.55) 0%, rgba(242,237,228,.35) 100%);
-  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
-  border:1px solid rgba(189,139,45,.30);border-radius:18px;
-  padding:48px 24px 34px;margin-top:34px;
-  position:relative;overflow:hidden;text-align:center;
-  box-shadow:0 1px 2px rgba(26,20,16,.04),0 14px 42px -10px rgba(201,60,24,.09);
-  transition:transform .45s var(--spring),box-shadow .45s ease,border-color .35s;
+.loc-events{display:flex;gap:14px;margin-top:34px;}
+.loc-ev{
+  flex:1;text-align:center;
+  background:linear-gradient(170deg, rgba(250,248,243,.45) 0%, rgba(242,237,228,.20) 100%);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(189,139,45,.25);border-radius:16px;
+  padding:28px 12px 24px;
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease;
 }
-.loc-card::before{content:'';position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(to right,transparent,var(--peach-accent),transparent);opacity:.7;}
-.loc-card::after{content:'';position:absolute;bottom:0;left:12%;right:12%;height:1px;background:linear-gradient(to right,transparent,var(--peach-accent),transparent);opacity:.55;}
-.loc-card:hover{transform:translateY(-5px) scale(1.012);box-shadow:0 18px 50px rgba(0,0,0,.12),0 0 0 1px rgba(189,139,45,.22);}
-.loc-wave{position:absolute;left:0;right:0;height:28px;pointer-events:none;overflow:hidden;}
-.loc-wave-top{top:0}.loc-wave-bot{bottom:0;transform:scaleY(-1)}
-.loc-wave svg{width:200%;height:100%;display:block;animation:locWaveSlide 22s linear infinite;}
-.loc-wave-bot svg{animation-duration:28s;animation-direction:reverse}
-@keyframes locWaveSlide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.loc-type{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:13px;letter-spacing:4px;text-transform:uppercase;color:var(--peach);margin-bottom:14px;display:inline-block;}
-.loc-name{font-family:'Cormorant Garamond',serif;font-size:25px;font-weight:400;color:var(--cream);line-height:1.32;margin-bottom:30px;letter-spacing:.3px;}
-.loc-medallion{position:relative;width:168px;height:168px;margin:0 auto 30px;}
-.loc-medallion::before{content:'';position:absolute;inset:-22px;border-radius:50%;border:1px dashed rgba(189,139,45,.35);animation:locRingRotate 42s linear infinite;pointer-events:none;}
-.loc-medallion::after{content:'';position:absolute;inset:-9px;border-radius:50%;border:1px solid rgba(189,139,45,.30);animation:locRingBreathe 5.5s ease-in-out infinite;pointer-events:none;}
-@keyframes locRingRotate{to{transform:rotate(360deg)}}
-@keyframes locRingBreathe{0%,100%{transform:scale(1);opacity:.5;border-color:rgba(189,139,45,.14)}50%{transform:scale(1.035);opacity:.95;border-color:rgba(189,139,45,.28)}}
-.loc-med-svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);overflow:visible;}
-.loc-med-track{fill:none;stroke:rgba(201,60,24,.24);stroke-width:1;}
-.loc-med-arc{fill:none;stroke:var(--peach);stroke-width:1.6;stroke-linecap:round;stroke-dasharray:345.58;stroke-dashoffset:345.58;filter:drop-shadow(0 0 3px rgba(201,60,24,.3));transition:stroke-dashoffset 2.6s var(--smooth);}
-.loc-card.on .loc-med-arc{stroke-dashoffset:78}
-.loc-rotor{position:absolute;inset:0;animation:locRotorSpin 15s linear infinite;pointer-events:none;will-change:transform;}
-.loc-rotor-rev{animation-duration:19s;animation-direction:reverse}
-.loc-dot{position:absolute;top:-5px;left:50%;width:10px;height:10px;border-radius:50%;background:var(--peach);transform:translateX(-50%);box-shadow:0 0 0 3px rgba(255,255,255,.95),0 0 10px rgba(201,60,24,.55),0 0 22px rgba(201,60,24,.3);}
-.loc-med-ctr{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}
-.loc-med-time{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:400;color:var(--cream);line-height:1;letter-spacing:-.5px;}
-.loc-med-ampm{font-size:11px;letter-spacing:5px;color:var(--peach);font-weight:400;margin-top:4px;}
-.loc-addr{font-size:14px;line-height:1.9;color:var(--cream);opacity:.72;margin:0 auto 22px;max-width:260px;position:relative;}
-.loc-addr::before{content:'✦';display:block;font-size:8px;color:var(--peach);opacity:.7;margin-bottom:12px;letter-spacing:8px;}
-.loc-dual{display:flex;align-items:center;justify-content:center;gap:0;margin:0 auto 28px;max-width:340px;}
-.loc-dual-ev{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto;}
-.loc-dual-type{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--peach);}
-.loc-dual-time{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;color:var(--cream);line-height:1;letter-spacing:-.5px;}
-.loc-dual-time em{font-size:11px;letter-spacing:4px;color:var(--peach);font-style:normal;vertical-align:super;margin-left:3px;}
-.loc-dual-sep{flex:1;padding:0 10px;display:flex;align-items:center;margin-top:18px;}
-.loc-dual-sep svg{width:100%;height:auto;}
+.loc-ev:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.07)}
+.loc-ev-ico{
+  width:44px;height:44px;margin:0 auto 14px;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:rgba(189,139,45,.08);border:1px solid rgba(189,139,45,.22);
+}
+.loc-ev-ico svg{width:20px;height:20px;color:var(--peach);stroke-width:1.5}
+.loc-ev-type{
+  font-family:'Cormorant Garamond',serif;font-weight:500;
+  font-size:11px;letter-spacing:3.5px;text-transform:uppercase;
+  color:var(--peach);margin-bottom:12px;display:block;
+}
+.loc-ev-time{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(34px,8.5vw,46px);font-weight:300;
+  color:var(--cream);line-height:1;letter-spacing:-.02em;
+}
+.loc-ev-time em{
+  font-size:11px;letter-spacing:4px;color:var(--peach-accent);
+  font-style:normal;vertical-align:super;margin-left:3px;font-weight:500;
+}
+.loc-ev-venue{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:14px;color:var(--cream);opacity:.55;margin-top:10px;line-height:1.5;
+}
+.loc-map-wrap{
+  margin-top:28px;border-radius:16px;overflow:hidden;
+  border:1px solid rgba(189,139,45,.25);
+  box-shadow:0 4px 24px rgba(0,0,0,.06);
+  aspect-ratio:16/10;
+}
+.loc-map-wrap iframe{width:100%;height:100%;display:block;border:0;filter:saturate(.85) contrast(1.05)}
+.loc-address{
+  margin-top:20px;text-align:center;
+  font-size:14px;color:var(--cream);opacity:.65;line-height:1.8;
+}
+.loc-address strong{
+  display:block;font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-weight:500;color:var(--cream);opacity:1;
+  letter-spacing:.5px;margin-bottom:2px;
+}
+.loc-btn-wrap{display:flex;justify-content:center;margin-top:20px}
 
 /* ── CALENDAR ─────────────────────────────────────────── */
 #calendar{background:var(--ink3);padding:54px 22px;text-align:center;border-top:1px solid rgba(189,139,45,.22);border-bottom:1px solid rgba(189,139,45,.22);}
@@ -679,7 +687,6 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 @media(prefers-reduced-motion:reduce){
   .tl-orn,.tl-pulse,.fam-orn,.fam-pulse{animation:none!important}
   .tl-row,.fam-row-inner>*{transition:none!important}
-  .loc-card .loc-med-arc{stroke-dashoffset:78}
 }
   </style>
 </head>
@@ -817,78 +824,41 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
   <h2 class="ttl">La Celebración</h2>
   <div class="gline"></div>
 
-  <!-- Card 1: Ceremonia Civil -->
-  <div class="loc-card">
-    <div class="loc-wave loc-wave-top" aria-hidden="true">
-      <svg viewBox="0 0 1600 28" preserveAspectRatio="none">
-        <path d="M0,14 Q100,4 200,14 T400,14 T600,14 T800,14 T1000,14 T1200,14 T1400,14 T1600,14" fill="none" stroke="rgba(201,60,24,.42)" stroke-width="1"/>
-        <path d="M0,20 Q100,10 200,20 T400,20 T600,20 T800,20 T1000,20 T1200,20 T1400,20 T1600,20" fill="none" stroke="rgba(201,60,24,.22)" stroke-width=".8"/>
-      </svg>
-    </div>
-
-    <span class="loc-type">Ceremonia Civil</span>
-    <h3 class="loc-name">Querétaro<br>México</h3>
-
-    <div class="loc-medallion">
-      <svg class="loc-med-svg" viewBox="0 0 168 168"><circle class="loc-med-track" cx="84" cy="84" r="55"/><circle class="loc-med-arc" cx="84" cy="84" r="55" id="locMedArc1"/></svg>
-      <div class="loc-rotor"><span class="loc-dot"></span></div>
-      <div class="loc-rotor loc-rotor-rev" style="inset:-9px"><span class="loc-dot" style="width:6px;height:6px;top:-3px;background:var(--peach-lt)"></span></div>
-      <div class="loc-med-ctr">
-        <span class="loc-med-time">5:00</span>
-        <span class="loc-med-ampm">pm</span>
+  <div class="loc-events">
+    <div class="loc-ev">
+      <div class="loc-ev-ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
       </div>
+      <span class="loc-ev-type">Ceremonia Civil</span>
+      <span class="loc-ev-time">5:00<em>pm</em></span>
+      <p class="loc-ev-venue">Av. de los Insurgentes 3810</p>
     </div>
-
-    <p class="loc-addr">Querétaro · México</p>
-
-    <a href="https://maps.app.goo.gl/" target="_blank" rel="noopener"
-       class="btn" style="max-width:280px;margin:0 auto 8px;display:flex">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-      Cómo llegar · Maps
-    </a>
-
-    <div class="loc-wave loc-wave-bot" aria-hidden="true">
-      <svg viewBox="0 0 1600 28" preserveAspectRatio="none">
-        <path d="M0,14 Q100,24 200,14 T400,14 T600,14 T800,14 T1000,14 T1200,14 T1400,14 T1600,14" fill="none" stroke="rgba(201,60,24,.42)" stroke-width="1"/>
-        <path d="M0,8 Q100,18 200,8 T400,8 T600,8 T800,8 T1000,8 T1200,8 T1400,8 T1600,8" fill="none" stroke="rgba(201,60,24,.22)" stroke-width=".8"/>
-      </svg>
+    <div class="loc-ev">
+      <div class="loc-ev-ico" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <span class="loc-ev-type">Recepción</span>
+      <span class="loc-ev-time">5:30<em>pm</em></span>
+      <p class="loc-ev-venue">Mismo Lugar</p>
     </div>
   </div>
 
-  <!-- Card 2: Recepción -->
-  <div class="loc-card">
-    <div class="loc-wave loc-wave-top" aria-hidden="true">
-      <svg viewBox="0 0 1600 28" preserveAspectRatio="none">
-        <path d="M0,14 Q100,4 200,14 T400,14 T600,14 T800,14 T1000,14 T1200,14 T1400,14 T1600,14" fill="none" stroke="rgba(201,60,24,.42)" stroke-width="1"/>
-      </svg>
-    </div>
+  <div class="loc-map-wrap">
+    <iframe src="https://maps.google.com/maps?q=Av+de+los+Insurgentes+3810,+Saltillo,+Coahuila,+Mexico&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
 
-    <span class="loc-type">Recepción</span>
-    <h3 class="loc-name">Mismo Lugar</h3>
+  <div class="loc-address">
+    <strong>Av. de los Insurgentes 3810</strong>
+    Saltillo, Coahuila &middot; México
+  </div>
 
-    <div class="loc-medallion">
-      <svg class="loc-med-svg" viewBox="0 0 168 168"><circle class="loc-med-track" cx="84" cy="84" r="55"/><circle class="loc-med-arc" cx="84" cy="84" r="55" id="locMedArc2"/></svg>
-      <div class="loc-rotor"><span class="loc-dot"></span></div>
-      <div class="loc-rotor loc-rotor-rev" style="inset:-9px"><span class="loc-dot" style="width:6px;height:6px;top:-3px;background:var(--peach-lt)"></span></div>
-      <div class="loc-med-ctr">
-        <span class="loc-med-time">5:30</span>
-        <span class="loc-med-ampm">pm</span>
-      </div>
-    </div>
-
-    <p class="loc-addr">Querétaro · México</p>
-
-    <a href="https://maps.app.goo.gl/" target="_blank" rel="noopener"
-       class="btn btn-gold" style="max-width:280px;margin:0 auto 8px;display:flex">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 8 16 12 12 16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-      Cómo llegar · Maps
+  <div class="loc-btn-wrap">
+    <a href="https://maps.google.com/maps?q=Av+de+los+Insurgentes+3810,+Saltillo,+Coahuila,+Mexico" target="_blank" rel="noopener"
+       class="btn btn-gold" style="max-width:280px;display:flex">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Cómo llegar
     </a>
-
-    <div class="loc-wave loc-wave-bot" aria-hidden="true">
-      <svg viewBox="0 0 1600 28" preserveAspectRatio="none">
-        <path d="M0,14 Q100,24 200,14 T400,14 T600,14 T800,14 T1000,14 T1200,14 T1400,14 T1600,14" fill="none" stroke="rgba(201,60,24,.42)" stroke-width="1"/>
-      </svg>
-    </div>
   </div>
 </section>
 
@@ -1479,13 +1449,15 @@ function scrollAnims() {
 
   gsap.from('.iq-text', { opacity:0, y:20, duration:.8, ease:'power3.out', scrollTrigger:{ trigger:'#intro-quote', start:'top 85%', once:true } });
 
-  gsap.from('.cd-ring-item', { opacity:0, y:22, duration:.65, stagger:.11, ease:'power3.out', scrollTrigger:{ trigger:'#countdown', start:'top 85%', once:true } });
+  gsap.from('.cd-card', { opacity:0, y:22, duration:.65, stagger:.11, ease:'power3.out', scrollTrigger:{ trigger:'#countdown', start:'top 85%', once:true } });
 
   ScrollTrigger.create({
     trigger:'#location', start:'top 78%', once:true,
     onEnter() {
-      gsap.from('.loc-card', { opacity:0, y:36, duration:.75, stagger:.14, ease });
-      document.querySelectorAll('.loc-card').forEach((c,i) => setTimeout(() => c.classList.add('on'), 420+i*220));
+      gsap.from('.loc-ev', { opacity:0, y:30, duration:.7, stagger:.12, ease });
+      gsap.from('.loc-map-wrap', { opacity:0, y:24, duration:.8, delay:.25, ease });
+      gsap.from('.loc-address', { opacity:0, y:14, duration:.6, delay:.4, ease });
+      gsap.from('.loc-btn-wrap', { opacity:0, y:14, duration:.6, delay:.5, ease });
     }
   });
 
