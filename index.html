@@ -275,44 +275,93 @@ section{padding:64px 22px}
 .qr-img img{width:100%;height:100%;display:block;border-radius:6px}
 .qr-hint{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--cream);opacity:.75;line-height:1.7;max-width:280px}
 
-/* ── COUNTDOWN · RINGS ────────────────────────────────── */
+/* ── COUNTDOWN · GLASS TILES ─────────────────────────────── */
 #countdown{
   position:relative;overflow:hidden;
-  padding:96px 14px 108px;
+  padding:80px 20px 72px;
   background:linear-gradient(180deg, var(--ink2) 0%, var(--ink3) 100%);
 }
-.cd-wave-top,.cd-wave-bot{position:absolute;left:0;right:0;height:52px;pointer-events:none;z-index:0;overflow:hidden;}
-.cd-wave-top{top:0}.cd-wave-bot{bottom:0}
-.cd-wave-top svg,.cd-wave-bot svg{display:block;width:200%;height:100%;animation:waveFlow 22s linear infinite;}
-.cd-wave-bot svg{animation-duration:28s;animation-direction:reverse}
-@keyframes waveFlow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.cd-ring-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 18px;margin-top:52px;position:relative;z-index:1;padding:0 4px;align-items:center;justify-items:center;}
-.cd-ring-item{position:relative;aspect-ratio:1;display:flex;align-items:center;justify-content:center;width:100%;transition:transform .45s var(--spring);}
-.cd-ring-item:hover{transform:scale(1.04)}
-.cd-ring-item:active{transform:scale(.96)}
-.cd-ring-grid>:nth-child(1){width:100%}
-.cd-ring-grid>:nth-child(2){width:82%}
-.cd-ring-grid>:nth-child(3){width:68%}
-.cd-ring-grid>:nth-child(4){width:56%}
-.cd-ring-item::after{content:'';position:absolute;inset:-14px;border-radius:50%;border:1px dashed rgba(189,139,45,.30);animation:cdOutRing 38s linear infinite;}
-@keyframes cdOutRing{to{transform:rotate(360deg)}}
-.cd-ring-svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg);}
-.cd-ring-track{fill:none;stroke:rgba(189,139,45,.25);stroke-width:2;}
-.cd-ring-prog{
-  fill:none;stroke:var(--peach);stroke-width:2.5;stroke-linecap:round;
-  stroke-dasharray:326.73;stroke-dashoffset:326.73;
-  filter:drop-shadow(0 0 4px rgba(201,60,24,.4));
-  transition:stroke-dashoffset 1.2s var(--smooth);
+#countdown::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 50% at 50% 40%, rgba(189,139,45,.06) 0%, transparent 70%);
 }
-.cd-rotor{position:absolute;inset:0;animation:locRotorSpin 12s linear infinite;pointer-events:none;}
-.cd-dot{position:absolute;top:-5px;left:50%;width:9px;height:9px;border-radius:50%;background:var(--peach);transform:translateX(-50%);box-shadow:0 0 0 2px rgba(255,255,255,.9),0 0 10px rgba(201,60,24,.55);}
-.cd-ripple{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(189,139,45,.18);}
-.cd-ring-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}
-.cd-num{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,6.5vw,40px);font-weight:400;color:var(--cream);line-height:1;letter-spacing:-.5px;}
-.cd-ring-lbl{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:var(--peach);opacity:.75;margin-top:2px;}
-.cd-ring-item.tick .cd-ripple{animation:cdRipple .6s ease-out}
-@keyframes cdRipple{0%{box-shadow:0 0 0 0 rgba(189,139,45,.4)}100%{box-shadow:0 0 0 14px rgba(189,139,45,0)}}
-@keyframes locRotorSpin{to{transform:rotate(360deg)}}
+.cd-cards{
+  display:flex;align-items:center;justify-content:center;
+  gap:10px;margin-top:44px;position:relative;z-index:1;
+}
+.cd-card{
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;
+  gap:6px;
+  background:linear-gradient(170deg, rgba(250,248,243,.45) 0%, rgba(242,237,228,.20) 100%);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(189,139,45,.25);
+  border-radius:16px;
+  padding:22px 14px 16px;
+  min-width:68px;
+  box-shadow:0 4px 24px rgba(0,0,0,.04), inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .3s cubic-bezier(.34,1.56,.64,1), box-shadow .3s ease;
+  overflow:hidden;
+}
+.cd-card::before{
+  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:conic-gradient(from 0deg, transparent 0%, rgba(189,139,45,.12) 10%, transparent 20%);
+  animation:cdShimmer 6s linear infinite;pointer-events:none;opacity:0;
+  transition:opacity .4s ease;
+}
+.cd-card:hover::before{opacity:1}
+.cd-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 8px 32px rgba(0,0,0,.07), inset 0 1px 0 rgba(255,255,255,.4);
+}
+@keyframes cdShimmer{to{transform:rotate(360deg)}}
+.cd-digit{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(36px,9vw,56px);
+  font-weight:300;
+  color:var(--cream);
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-.02em;
+  min-width:2ch;text-align:center;
+  display:inline-block;
+}
+.cd-label{
+  font-size:10px;letter-spacing:3px;text-transform:uppercase;
+  color:var(--peach-accent);font-weight:500;opacity:.8;
+}
+.cd-sep{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(28px,7vw,42px);
+  color:var(--peach);opacity:.4;line-height:1;
+  margin-bottom:18px;user-select:none;
+  animation:cdSepPulse 2s ease-in-out infinite;
+}
+@keyframes cdSepPulse{0%,100%{opacity:.25}50%{opacity:.6}}
+.cd-date{
+  margin-top:32px;
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(15px,3.8vw,19px);
+  color:var(--cream);opacity:.6;text-align:center;letter-spacing:.5px;
+}
+.cd-orn{
+  display:flex;align-items:center;justify-content:center;gap:14px;
+  margin-top:22px;opacity:.35;
+}
+.cd-orn::before,.cd-orn::after{
+  content:'';width:44px;height:1px;
+  background:linear-gradient(90deg, transparent, var(--peach-accent), transparent);
+}
+.cd-orn span{font-size:9px;color:var(--peach-accent)}
+@media(max-width:359px){
+  .cd-cards{gap:6px}
+  .cd-card{padding:18px 10px 14px;min-width:58px;border-radius:12px}
+  .cd-sep{font-size:22px;margin-bottom:14px}
+}
+@media(prefers-reduced-motion:reduce){
+  .cd-card::before{animation:none}
+  .cd-sep{animation:none;opacity:.4}
+}
 
 /* ── LOCATION ─────────────────────────────────────────── */
 #location{background:var(--ink);position:relative;overflow:hidden;}
@@ -617,8 +666,8 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 #wheel-spark-layer{position:absolute;inset:0;pointer-events:none;z-index:10;overflow:visible;}
 .wheel-spark{
   position:absolute;pointer-events:none;transform-origin:center center;will-change:transform,opacity;
-  filter:drop-shadow(0 0 5px rgba(189,139,45,.9));
 }
+.wheel-spark svg{display:block;width:100%;height:100%;}
 
 /* ── LIGHTBOX ────────────────────────────────────────── */
 #lightbox{position:fixed;inset:0;z-index:9990;display:none;align-items:center;justify-content:center;padding:clamp(16px,4vw,48px);background:rgba(8,12,24,.85);backdrop-filter:blur(18px) saturate(1.15);-webkit-backdrop-filter:blur(18px) saturate(1.15);opacity:0;cursor:zoom-out;}
@@ -730,74 +779,34 @@ section.has-sec-waves{padding-top:84px;padding-bottom:86px}
 
 <!-- ════════════════ 2. CUENTA REGRESIVA ════════════════ -->
 <section id="countdown">
-  <div class="cd-wave-top" aria-hidden="true">
-    <svg viewBox="0 0 800 50" preserveAspectRatio="none">
-      <path d="M0,25 Q100,5 200,25 T400,25 T600,25 T800,25" fill="none" stroke="rgba(201,60,24,.22)" stroke-width="1"/>
-      <path d="M0,32 Q100,14 200,32 T400,32 T600,32 T800,32" fill="none" stroke="rgba(232,213,160,.13)" stroke-width=".8"/>
-    </svg>
-  </div>
-
   <span class="lbl">El gran día llega en</span>
   <h2 class="ttl">Cuenta Regresiva</h2>
   <div class="gline"></div>
 
-  <div class="cd-ring-grid">
-    <div class="cd-ring-item" id="cd-item-d">
-      <svg class="cd-ring-svg" viewBox="0 0 120 120">
-        <circle class="cd-ring-track" cx="60" cy="60" r="52"/>
-        <circle class="cd-ring-prog"  cx="60" cy="60" r="52" id="ring-d"/>
-      </svg>
-      <div class="cd-rotor"><span class="cd-dot"></span></div>
-      <div class="cd-ripple"></div>
-      <div class="cd-ring-center">
-        <span class="cd-num" id="cd-d">--</span>
-        <span class="cd-ring-lbl">Días</span>
-      </div>
+  <div class="cd-cards">
+    <div class="cd-card">
+      <span class="cd-digit" id="cd-d">--</span>
+      <span class="cd-label">Días</span>
     </div>
-    <div class="cd-ring-item" id="cd-item-h">
-      <svg class="cd-ring-svg" viewBox="0 0 120 120">
-        <circle class="cd-ring-track" cx="60" cy="60" r="52"/>
-        <circle class="cd-ring-prog"  cx="60" cy="60" r="52" id="ring-h"/>
-      </svg>
-      <div class="cd-rotor" style="animation-duration:8s;animation-direction:reverse"><span class="cd-dot"></span></div>
-      <div class="cd-ripple"></div>
-      <div class="cd-ring-center">
-        <span class="cd-num" id="cd-h">--</span>
-        <span class="cd-ring-lbl">Horas</span>
-      </div>
+    <span class="cd-sep" aria-hidden="true">:</span>
+    <div class="cd-card">
+      <span class="cd-digit" id="cd-h">--</span>
+      <span class="cd-label">Horas</span>
     </div>
-    <div class="cd-ring-item" id="cd-item-m">
-      <svg class="cd-ring-svg" viewBox="0 0 120 120">
-        <circle class="cd-ring-track" cx="60" cy="60" r="52"/>
-        <circle class="cd-ring-prog"  cx="60" cy="60" r="52" id="ring-m"/>
-      </svg>
-      <div class="cd-rotor" style="animation-duration:5s"><span class="cd-dot"></span></div>
-      <div class="cd-ripple"></div>
-      <div class="cd-ring-center">
-        <span class="cd-num" id="cd-m">--</span>
-        <span class="cd-ring-lbl">Min</span>
-      </div>
+    <span class="cd-sep" aria-hidden="true">:</span>
+    <div class="cd-card">
+      <span class="cd-digit" id="cd-m">--</span>
+      <span class="cd-label">Min</span>
     </div>
-    <div class="cd-ring-item" id="cd-item-s">
-      <svg class="cd-ring-svg" viewBox="0 0 120 120">
-        <circle class="cd-ring-track" cx="60" cy="60" r="52"/>
-        <circle class="cd-ring-prog"  cx="60" cy="60" r="52" id="ring-s"/>
-      </svg>
-      <div class="cd-rotor" style="animation-duration:2s;animation-direction:reverse"><span class="cd-dot"></span></div>
-      <div class="cd-ripple"></div>
-      <div class="cd-ring-center">
-        <span class="cd-num" id="cd-s">--</span>
-        <span class="cd-ring-lbl">Seg</span>
-      </div>
+    <span class="cd-sep" aria-hidden="true">:</span>
+    <div class="cd-card">
+      <span class="cd-digit" id="cd-s">--</span>
+      <span class="cd-label">Seg</span>
     </div>
   </div>
 
-  <div class="cd-wave-bot" aria-hidden="true">
-    <svg viewBox="0 0 800 50" preserveAspectRatio="none">
-      <path d="M0,25 Q100,5 200,25 T400,25 T600,25 T800,25" fill="none" stroke="rgba(201,60,24,.22)" stroke-width="1"/>
-      <path d="M0,18 Q100,36 200,18 T400,18 T600,18 T800,18" fill="none" stroke="rgba(232,213,160,.13)" stroke-width=".8"/>
-    </svg>
-  </div>
+  <p class="cd-date">31 de Octubre, 2026 &middot; 5:00 PM</p>
+  <div class="cd-orn" aria-hidden="true"><span>&#9830;</span></div>
 </section>
 
 
@@ -1356,15 +1365,8 @@ function spawnParticles() {
 
 /* ── COUNTDOWN ───────────────────────────────────────── */
 const WED = new Date('2026-10-31T17:00:00');
-const RING_C = 2 * Math.PI * 52;
-let prevS = '';
+let prevS = '', prevM = '';
 function pad(n){ return String(n).padStart(2,'0'); }
-function setRing(id, p) {
-  const el = document.getElementById(id);
-  if (!el) return;
-  const c = Math.max(0, Math.min(1, p));
-  el.style.strokeDashoffset = (RING_C * (1 - c)).toFixed(2);
-}
 function countdown() {
   const d = WED - Date.now();
   if (d <= 0) { ['cd-d','cd-h','cd-m','cd-s'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent='00'; }); return; }
@@ -1374,19 +1376,17 @@ function countdown() {
   const secs = Math.floor((d % 60000) / 1000);
   document.getElementById('cd-d').textContent = pad(days);
   document.getElementById('cd-h').textContent = pad(hrs);
-  document.getElementById('cd-m').textContent = pad(mins);
-  setRing('ring-d', Math.min(days / 365, 1));
-  setRing('ring-h', hrs / 24);
-  setRing('ring-m', mins / 60);
-  setRing('ring-s', secs / 60);
+  const mEl = document.getElementById('cd-m');
+  const nm = pad(mins);
+  if (nm !== prevM) {
+    gsap.fromTo(mEl, {y:-4,opacity:.4},{y:0,opacity:1,duration:.22,ease:'power2.out'});
+    mEl.textContent = nm; prevM = nm;
+  }
   const sEl = document.getElementById('cd-s');
   const ns = pad(secs);
   if (ns !== prevS) {
-    gsap.fromTo(sEl, { y:-8, opacity:.2 }, { y:0, opacity:1, duration:.25, ease:'power2.out' });
-    sEl.textContent = ns;
-    prevS = ns;
-    const item = document.getElementById('cd-item-s');
-    if (item) { item.classList.remove('tick'); void item.offsetWidth; item.classList.add('tick'); }
+    gsap.fromTo(sEl, {y:-6,opacity:.3},{y:0,opacity:1,duration:.25,ease:'back.out(1.4)'});
+    sEl.textContent = ns; prevS = ns;
   }
 }
 
@@ -1667,8 +1667,12 @@ function initWheel(){
     var sparkLayer  = document.getElementById('wheel-spark-layer');
     var stageEl     = document.querySelector('.wheel-stage');
     var lastSparkMs = 0;
-    var SPARK_COLORS = ['#bd8b2d','#c93c18','#FFFFFF','#e8a84c'];
-    var STAR_PATH   = 'polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)';
+    var PETAL_COLORS = ['#3c071b','#1a0a52','#7a4a00','#263e0f','#551029','#a96800'];
+    var PETAL_PATHS  = [
+      'M10 0 C15 4,18 14,10 20 C2 14,5 4,10 0Z',
+      'M8 0 C14 3,16 12,8 20 C0 12,2 3,8 0Z',
+      'M10 0 C16 5,14 16,10 20 C6 16,4 5,10 0Z'
+    ];
 
     function spawnWheelSparks(scrollVel){
       var now  = performance.now();
@@ -1686,35 +1690,31 @@ function initWheel(){
 
       for(var k = 0; k < cnt; k++){
         (function(){
-          var angle    = Math.random() * Math.PI * 2;
-          var rOff     = (Math.random() - 0.5) * 60;
-          var sx       = cx + Math.cos(angle) * (r + rOff);
-          var sy       = cy + Math.sin(angle) * (r + rOff);
-          var isStar   = Math.random() > 0.38;
-          var size     = isStar ? (16 + Math.random() * 14) : (8 + Math.random() * 8);
-          var el       = document.createElement('div');
+          var angle = Math.random() * Math.PI * 2;
+          var rOff  = (Math.random() - 0.5) * 60;
+          var sx    = cx + Math.cos(angle) * (r + rOff);
+          var sy    = cy + Math.sin(angle) * (r + rOff);
+          var size  = 18 + Math.random() * 14;
+          var color = PETAL_COLORS[Math.floor(Math.random()*PETAL_COLORS.length)];
+          var pPath = PETAL_PATHS[Math.floor(Math.random()*PETAL_PATHS.length)];
+
+          var el = document.createElement('div');
           el.className = 'wheel-spark';
-          el.style.cssText = [
-            'width:'  + size + 'px',
-            'height:' + size + 'px',
-            'left:'   + (sx - size/2) + 'px',
-            'top:'    + (sy - size/2) + 'px',
-            'background:' + SPARK_COLORS[Math.floor(Math.random()*SPARK_COLORS.length)],
-            isStar ? 'clip-path:' + STAR_PATH + ';border-radius:0' : 'border-radius:50%'
-          ].join(';');
+          el.style.cssText = 'width:'+size+'px;height:'+size+'px;left:'+(sx-size/2)+'px;top:'+(sy-size/2)+'px;opacity:.85';
+          el.innerHTML = '<svg viewBox="0 0 20 20"><path d="'+pPath+'" fill="'+color+'" opacity=".8"/></svg>';
           sparkLayer.appendChild(el);
 
-          var outA  = Math.atan2(sy - cy, sx - cx);
-          var dist  = 55 + Math.random() * 90;
-          var flyX  = Math.cos(outA) * dist;
-          var flyY  = Math.sin(outA) * dist - (15 + Math.random() * 35);
+          var outA = Math.atan2(sy - cy, sx - cx);
+          var dist = 55 + Math.random() * 90;
+          var flyX = Math.cos(outA) * dist;
+          var flyY = Math.sin(outA) * dist - (20 + Math.random() * 40);
 
           gsap.fromTo(el,
-            {opacity:1, scale:1, x:0, y:0, rotate:Math.random()*360},
-            {opacity:0, scale:0.2,
+            {opacity:.85, scale:1, x:0, y:0, rotate:Math.random()*360},
+            {opacity:0, scale:0.3,
              x:flyX, y:flyY,
-             rotate:'+='+(Math.random()*500-250),
-             duration:0.55+Math.random()*0.5,
+             rotate:'+='+(Math.random()*400-200),
+             duration:0.7+Math.random()*0.6,
              ease:'power1.out',
              onComplete:function(){ if(el.parentNode) el.parentNode.removeChild(el); }
             });
