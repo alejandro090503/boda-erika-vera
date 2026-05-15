@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="theme-color" content="#FFFFFF">
-  <title>Erika &amp; Jorge · 31 · Octubre · 2026</title>
-  <meta property="og:title" content="Erika & Jorge · 31 · Octubre · 2026">
+  <title>Erika &amp; Alberto · 31 · Octubre · 2026</title>
+  <meta property="og:title" content="Erika & Alberto · 31 · Octubre · 2026">
   <meta property="og:description" content="Con mucho amor te invitamos a nuestra boda. ¡Confirma tu asistencia!">
   <meta property="og:image" content="https://boda-erika-vera.vercel.app/sobre.png">
   <meta property="og:image:width" content="768">
@@ -185,7 +185,7 @@ section{padding:64px 22px}
   z-index:0;will-change:transform;
 }
 .h-bg img{
-  width:100%;height:100%;object-fit:cover;object-position:55% 35%;
+  width:100%;height:100%;object-fit:cover;object-position:42% 18%;
   filter:brightness(.92) saturate(.82) contrast(.95);
   display:block;
 }
@@ -634,41 +634,36 @@ section{position:relative}
 }
 .itv3-item:last-child{padding-bottom:10px;}
 
-/* ── GALERÍA / WHEEL ─────────────────────────────────── */
-#gallery{background:var(--ink);padding:60px 0 80px;position:relative;overflow:hidden;}
+/* ── GALERÍA ROMÁNTICA ───────────────────────────────── */
+#gallery{background:var(--ink);padding:60px 22px 80px;position:relative;overflow:hidden;}
 #gallery::before,#gallery::after{
   content:'';position:absolute;left:0;right:0;height:140px;
   z-index:5;pointer-events:none;
 }
 #gallery::before{top:0;background:linear-gradient(to bottom,var(--ink) 0%,rgba(255,255,255,.92) 40%,rgba(255,255,255,.4) 70%,transparent 100%);}
 #gallery::after{bottom:0;background:linear-gradient(to top,var(--ink) 0%,rgba(255,255,255,.92) 40%,rgba(255,255,255,.4) 70%,transparent 100%);}
-.gallery-head{text-align:center;margin-bottom:50px;padding:0 26px;}
-.wheel-stage{position:relative;width:100%;height:min(960px,120vw);max-width:1080px;margin:0 auto;padding:clamp(20px,4vw,60px);display:flex;align-items:center;justify-content:center;}
-.wheel{position:relative;width:min(840px,92vw);height:min(840px,92vw);border-radius:50%;}
-.wheel-spoke{position:absolute;inset:-2px;border-radius:50%;border:1px solid rgba(189,139,45,0.40);}
-.wheel-spoke--inner{inset:min(120px,15%);border-style:dashed;opacity:.5;}
-.wheel-item{
-  position:absolute;
-  --r:min(340px,38vw);
-  --angle:calc(var(--i) * (360deg / 5));
-  left:50%;top:50%;
-  width:min(300px,32vw);
-  height:min(380px,40vw);
-  margin-left:calc(min(300px,32vw) / -2);
-  margin-top:calc(min(380px,40vw) / -2);
-  transform:rotate(var(--angle)) translateY(calc(-1 * var(--r))) rotate(calc(-1 * var(--angle)));
-  border-radius:3px;overflow:hidden;
-  box-shadow:0 8px 32px rgba(0,0,0,.15),0 1px 4px rgba(0,0,0,.08);
+.gallery-head{text-align:center;margin-bottom:40px;padding:0 4px;}
+.gal-grid{display:flex;flex-direction:column;gap:28px;max-width:380px;margin:0 auto;}
+.gal-item{
+  position:relative;overflow:hidden;border-radius:3px;
+  box-shadow:0 6px 28px rgba(0,0,0,.12),0 1px 4px rgba(0,0,0,.06);
+  opacity:0;transform:translateY(30px);
 }
-.wheel-item-inner{position:relative;width:100%;height:100%;cursor:zoom-in;}
-.wheel-item-inner img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .6s ease;}
-.wheel-item-inner:hover img{transform:scale(1.05);}
-.wheel-hub{position:absolute;width:clamp(50px,7vw,80px);height:clamp(50px,7vw,80px);color:var(--peach-accent);opacity:.6;}
-#wheel-spark-layer{position:absolute;inset:0;pointer-events:none;z-index:10;overflow:visible;}
-.wheel-spark{
-  position:absolute;pointer-events:none;transform-origin:center center;will-change:transform,opacity;
+.gal-item img{
+  width:100%;height:auto;display:block;
+  filter:sepia(.18) contrast(.92) brightness(.96) saturate(.85);
+  transition:transform .8s ease,filter .8s ease;
 }
-.wheel-spark svg{display:block;width:100%;height:100%;}
+.gal-item:hover img{transform:scale(1.03);filter:sepia(.08) contrast(.95) brightness(1) saturate(.92);}
+.gal-item::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(26,10,82,.06) 0%,transparent 40%,transparent 60%,rgba(60,7,27,.10) 100%);
+  mix-blend-mode:multiply;
+}
+.gal-item.is-wide img{aspect-ratio:16/10;object-fit:cover;}
+.gal-item.is-square img{aspect-ratio:1/1;object-fit:cover;}
+.gal-pair{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.gal-pair .gal-item img{aspect-ratio:3/4;object-fit:cover;}
 
 /* ── LIGHTBOX ────────────────────────────────────────── */
 #lightbox{position:fixed;inset:0;z-index:9990;display:none;align-items:center;justify-content:center;padding:clamp(16px,4vw,48px);background:rgba(8,12,24,.85);backdrop-filter:blur(18px) saturate(1.15);-webkit-backdrop-filter:blur(18px) saturate(1.15);opacity:0;cursor:zoom-out;}
@@ -690,7 +685,7 @@ section{position:relative}
   <div class="ld-bg" aria-hidden="true"></div>
   <div class="ld-overlay" aria-hidden="true"></div>
   <div class="ld-content">
-    <div class="ld-names">Erika &amp; Jorge</div>
+    <div class="ld-names">Erika &amp; Alberto</div>
     <p class="ld-date">31 · Octubre · 2026</p>
     <button class="ld-btn" onclick="openEnvelope()">Toca para abrir</button>
   </div>
@@ -717,7 +712,7 @@ section{position:relative}
 <section id="hero">
   <div class="h-bg" id="heroBg">
     <img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464668531-0.jpeg"
-         alt="Erika y Jorge" loading="eager" id="heroPic">
+         alt="Erika y Alberto" loading="eager" id="heroPic">
   </div>
   <div class="h-ov"></div>
   <div class="h-frame"></div>
@@ -728,8 +723,6 @@ section{position:relative}
     <div class="h-ring h-ring-2"></div>
     <div class="h-ring h-ring-3"></div>
   </div>
-  <div class="h-particles" id="hPart"></div>
-
   <div class="h-cnt" id="hCnt">
     <div class="h-name-wrap">
       <span class="h-name-wind-line"></span>
@@ -739,7 +732,7 @@ section{position:relative}
     <div class="h-amp-clip"><span class="h-amp" id="hAmp">&amp;</span></div>
     <div class="h-name-wrap">
       <span class="h-name-wind-line"></span>
-      <div class="h-clip"><span class="h-name" id="hN2">Jorge</span></div>
+      <div class="h-clip"><span class="h-name" id="hN2">Alberto</span></div>
       <span class="h-name-wind-line"></span>
     </div>
 
@@ -810,7 +803,7 @@ section{position:relative}
       <div class="loc-ev-ico" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
       </div>
-      <span class="loc-ev-type">Ceremonia Civil</span>
+      <span class="loc-ev-type">Ceremonia de Votos</span>
       <span class="loc-ev-time">5:00<em>pm</em></span>
       <p class="loc-ev-venue">Chocolate Azul Jardín de Eventos</p>
     </div>
@@ -850,8 +843,8 @@ section{position:relative}
   <span class="lbl">No lo olvides</span>
   <h2 class="ttl" style="font-size:26px">Guarda la Fecha</h2>
   <div class="gline"></div>
-  <p class="cal-sub">Entre los nervios, la emoción y la felicidad, hay algo que tenemos muy claro: queremos que estés con nosotros en este día tan especial. Así que aparta la fecha y prepárate para celebrar el amor en grande. 🥂</p>
-  <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Erika+%26+Jorge&dates=20261031T170000/20261101T020000&details=Ceremonia+Civil+5:00+PM.+Recepci%C3%B3n+5:30+PM.+Chocolate+Azul+Jard%C3%ADn+de+Eventos%2C+Venceremos%2C+Quer%C3%A9taro.&location=Chocolate+Azul+Jard%C3%ADn+de+Eventos%2C+Venceremos%2C+Quer%C3%A9taro%2C+M%C3%A9xico"
+  <p class="cal-sub">Entre los nervios, la emoción y la felicidad, hay algo que tenemos muy claro: queremos que estés con nosotros en este día tan especial. Así que aparta la fecha y prepárate para celebrar el amor en grande.</p>
+  <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Boda+de+Erika+%26+Alberto&dates=20261031T170000/20261101T020000&details=Ceremonia+Civil+5:00+PM.+Recepci%C3%B3n+5:30+PM.+Chocolate+Azul+Jard%C3%ADn+de+Eventos%2C+Venceremos%2C+Quer%C3%A9taro.&location=Chocolate+Azul+Jard%C3%ADn+de+Eventos%2C+Venceremos%2C+Quer%C3%A9taro%2C+M%C3%A9xico"
      target="_blank" rel="noopener" id="calBtn"
      class="btn btn-gold" style="max-width:310px;margin:0 auto;display:flex">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -970,7 +963,7 @@ section{position:relative}
 
   <div class="dc-note" id="dcNote">
     <strong>Por favor evitar:</strong>
-    Blanco (reservado para la novia) · Negro puro · Rojo vino intenso.
+    Blanco (reservado para la novia) · Rojo fuerte.
   </div>
 </section>
 
@@ -1009,26 +1002,23 @@ section{position:relative}
     <h2 class="ttl">Recuerdos</h2>
     <div class="gline"></div>
   </div>
-  <div class="wheel-stage">
-    <div id="wheel-spark-layer" aria-hidden="true"></div>
-    <div class="wheel" id="wheel">
-      <span class="wheel-spoke" aria-hidden="true"></span>
-      <span class="wheel-spoke wheel-spoke--inner" aria-hidden="true"></span>
-      <div class="wheel-item" style="--i:0"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464657816-3.jpeg" alt="Foto 1" loading="lazy"></div></div>
-      <div class="wheel-item" style="--i:1"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464668531-0.jpeg" alt="Foto 2" loading="lazy"></div></div>
-      <div class="wheel-item" style="--i:2"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464675874-0.jpeg" alt="Foto 3" loading="lazy"></div></div>
-      <div class="wheel-item" style="--i:3"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464692605-0.jpeg" alt="Foto 4" loading="lazy"></div></div>
-      <div class="wheel-item" style="--i:4"><div class="wheel-item-inner"><img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464528707-0.png" alt="Foto 5" loading="lazy"></div></div>
+  <div class="gal-grid">
+    <div class="gal-item is-wide">
+      <img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464657816-3.jpeg" alt="Foto 1" loading="lazy">
     </div>
-    <div class="wheel-hub" aria-hidden="true">
-      <svg viewBox="0 0 60 60" fill="none">
-        <g stroke="currentColor" stroke-width=".8" fill="none">
-          <circle cx="30" cy="30" r="18" opacity=".4"/>
-          <circle cx="30" cy="30" r="10"/>
-          <circle cx="30" cy="30" r="3" fill="currentColor"/>
-          <path d="M30 14 L30 20 M30 40 L30 46 M14 30 L20 30 M40 30 L46 30" opacity=".55"/>
-        </g>
-      </svg>
+    <div class="gal-pair">
+      <div class="gal-item">
+        <img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464668531-0.jpeg" alt="Foto 2" loading="lazy">
+      </div>
+      <div class="gal-item">
+        <img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464675874-0.jpeg" alt="Foto 3" loading="lazy">
+      </div>
+    </div>
+    <div class="gal-item is-wide">
+      <img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464692605-0.jpeg" alt="Foto 4" loading="lazy">
+    </div>
+    <div class="gal-item is-square">
+      <img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464528707-0.png" alt="Foto 5" loading="lazy">
     </div>
   </div>
 </section>
@@ -1080,17 +1070,16 @@ section{position:relative}
     </div>
   </div>
 
-  <!-- Lluvia de sobres -->
-  <div class="gf-card sobre-card" style="cursor:default">
+  <!-- Mensaje emotivo -->
+  <div class="gf-card" style="cursor:default">
     <div class="gf-card-top">
       <div class="gf-logo">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
       </div>
-      <p class="gf-ttl">Lluvia de Sobres</p>
+      <p class="gf-ttl">Tu presencia</p>
     </div>
-    <p class="gf-nt">¡También contaremos con urna en el evento!</p>
-    <p style="font-size:14px;color:var(--cream);opacity:.82;margin-top:10px;line-height:1.7;font-family:'Cormorant Garamond',serif;font-style:italic">
-      Tu gesto de amor, en cualquier forma, nos llena de alegría.
+    <p style="font-size:15px;color:var(--cream);opacity:.88;margin-top:10px;line-height:1.8;font-family:'Cormorant Garamond',serif;font-style:italic;text-align:center">
+      No hay regalo más grande que tenerte con nosotros en este día. Lo que nazca de tu corazón será recibido con todo nuestro amor, pero lo más valioso para nosotros es tu compañía y tu cariño.
     </p>
   </div>
 </section>
@@ -1121,7 +1110,7 @@ section{position:relative}
 <footer id="footer">
   <div class="sec-floral" style="background-image:url('./bg-vintage-6.jpeg');opacity:.55"></div>
   <div class="ft-orn">✦ · ✦ · ✦</div>
-  <div class="ft-nms">Erika &amp; Jorge</div>
+  <div class="ft-nms">Erika &amp; Alberto</div>
   <div class="gline" style="margin-top:22px"></div>
   <p class="ft-dt">31 · Octubre · 2026</p>
   <p class="ft-note">Querétaro · México<br>Con amor, los novios</p>
@@ -1222,8 +1211,6 @@ function dismissLoader() {
     addWindOrns();
     addAuras();
     heroAnim();
-    spawnParticles(null, { fallToFloor: true });
-    spawnSectionPetals();
     scrollAnims();
   }
   loader.addEventListener('transitionend', function handler(e) {
@@ -1261,86 +1248,6 @@ function heroAnim() {
   });
 }
 
-/* ── PARTÍCULAS — pétalos cayendo ───────────────────── */
-function spawnParticles(container, opts) {
-  const c = container || document.getElementById('hPart');
-  if (!c) return;
-  opts = opts || {};
-  const MAX = opts.max || 30;
-  const SPAWN_RATE = opts.spawnRate || 0.09;
-  const SEED = opts.seed || 8;
-  const FALL_TO_FLOOR = opts.fallToFloor || false;
-  const PETAL_COLORS = ['#3c071b','#1a0a52','#7a4a00','#263e0f','#551029','#a96800'];
-  const PETAL_PATHS = [
-    'M12,2 Q18,6 16,14 Q14,20 12,22 Q10,20 8,14 Q6,6 12,2Z',
-    'M12,1 Q20,8 17,16 Q14,22 12,23 Q10,22 7,16 Q4,8 12,1Z',
-    'M12,3 Q17,5 15,13 Q13,19 12,21 Q11,19 9,13 Q7,5 12,3Z'
-  ];
-  const state = { W:0, H:0, floor:0, particles:[], MAX_TOTAL:MAX };
-  function measure(){ const r=c.getBoundingClientRect(); state.W=r.width; state.H=r.height; state.floor=r.height+20; }
-  measure();
-  window.addEventListener('resize', measure, { passive:true });
-
-  function create() {
-    if (state.particles.length >= state.MAX_TOTAL) return;
-    const sz = 10 + Math.random() * 14;
-    const brt = 0.5 + Math.random() * 0.5;
-    const col = PETAL_COLORS[Math.floor(Math.random() * PETAL_COLORS.length)];
-    const path = PETAL_PATHS[Math.floor(Math.random() * PETAL_PATHS.length)];
-    const el = document.createElementNS('http://www.w3.org/2000/svg','svg');
-    el.setAttribute('viewBox','0 0 24 24');
-    el.setAttribute('width', sz+'px');
-    el.setAttribute('height', sz+'px');
-    el.setAttribute('class','meteor');
-    el.innerHTML = `<path d="${path}" fill="${col}" opacity="${brt.toFixed(2)}"/>`;
-    Object.assign(el.style, { filter:`drop-shadow(0 0 2px rgba(0,0,0,.15))`, overflow:'visible', opacity:0 });
-    c.appendChild(el);
-
-    const x = Math.random() * state.W;
-    const vy = FALL_TO_FLOOR ? (0.7 + Math.random() * 0.6) : (0.3 + Math.random() * 0.35);
-    const vx = (Math.random() - 0.5) * 0.25;
-    const vr = (Math.random() - 0.5) * 1.2;
-    const sway = 0.3 + Math.random() * 0.5;
-    const swaySpd = 0.008 + Math.random() * 0.012;
-    const life = FALL_TO_FLOOR ? 99999 : (280 + Math.floor(Math.random() * 200));
-    const p = { el, x, y: -sz, vy, vx, vr, rot:Math.random()*360, life, age:0, phase:'in', sway, swaySpd, swayOff:Math.random()*Math.PI*2 };
-    state.particles.push(p);
-    gsap.to(el, { opacity: brt, duration:.6, ease:'power2.out' });
-  }
-
-  let frame;
-  (function tick() {
-    frame = requestAnimationFrame(tick);
-    state.particles.forEach((p,i) => {
-      p.age++;
-      if (p.age > p.life) { p.phase='out'; if(p.age > p.life+30){ p.el.remove(); state.particles.splice(i,1); return; } }
-      p.y += p.vy;
-      p.x += p.vx + Math.sin(p.age * p.swaySpd + p.swayOff) * p.sway;
-      p.rot += p.vr;
-      if (p.y > state.floor) { p.el.remove(); state.particles.splice(i,1); return; }
-      if (p.phase==='out') gsap.to(p.el, { opacity:0, duration:.5 });
-      p.el.style.transform = `translate(${p.x}px,${p.y}px) rotate(${p.rot}deg)`;
-    });
-    if (Math.random() < SPAWN_RATE && state.particles.length < state.MAX_TOTAL) create();
-  })();
-  for (let i = 0; i < SEED; i++) create();
-}
-
-/* ── PÉTALOS EN SECCIONES ────────────────────────────── */
-function spawnSectionPetals() {
-  const sectionIds = ['location','itinerary','qr-album','family','rsvp'];
-  sectionIds.forEach(id => {
-    const sec = document.getElementById(id);
-    if (!sec) return;
-    if (getComputedStyle(sec).position === 'static') sec.style.position = 'relative';
-    if (getComputedStyle(sec).overflow !== 'hidden') sec.style.overflow = 'hidden';
-    const c = document.createElement('div');
-    c.className = 'sec-particles';
-    c.setAttribute('aria-hidden','true');
-    sec.appendChild(c);
-    spawnParticles(c, { max: 14, spawnRate: 0.05, seed: 4, fallToFloor: true });
-  });
-}
 
 /* ── COUNTDOWN ───────────────────────────────────────── */
 const WED = new Date('2026-10-31T17:00:00');
@@ -1428,7 +1335,7 @@ function sendRSVP() {
 
   const lista = names.map((n,i) => `${i+1}. ${n}`).join('\n');
   const msg =
-    `¡Hola! Con mucho gusto confirmo mi asistencia a la celebración de Erika Noemí Vera Centeno & Jorge Alberto Almendrez Garcia. 🎉\n` +
+    `¡Hola! Con mucho gusto confirmo mi asistencia a la celebración de Erika Noemí Vera Centeno & Alberto Almendrez Garcia. 🎉\n` +
     `✅ Asistiré con ${_pases} pase${_pases > 1 ? 's' : ''}.\n` +
     (_pases === 1
       ? `Nombre: ${names[0]}`
@@ -1485,7 +1392,7 @@ function scrollAnims() {
   gsap.from('#footer > *', { opacity:0, y:20, duration:.6, stagger:.1, ease, scrollTrigger:{ trigger:'#footer', start:'top 90%', once:true } });
 
   initItinerary();
-  initWheel();
+  initGallery();
   initLightbox();
 }
 
@@ -1604,98 +1511,17 @@ function initItinerary(){
   });
 }
 
-/* ── WHEEL / GALLERY ────────────────────────────────── */
-function initWheel(){
-  var wheel = document.getElementById('wheel');
-  if(!wheel) return;
-  var wheelItems = wheel.querySelectorAll('.wheel-item-inner');
-  var prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if(!prefersReduced){
-    gsap.fromTo('.wheel-item',
-      {opacity:0, scale:.4},
-      {opacity:1, scale:1, duration:1.2, stagger:.08, ease:'back.out(1.3)',
-       scrollTrigger:{trigger:'.wheel-stage', start:'top 78%'}});
-    gsap.fromTo('.wheel-hub',
-      {opacity:0, scale:.3, rotate:-60},
-      {opacity:1, scale:1, rotate:0, duration:1.4, ease:'back.out(1.6)',
-       scrollTrigger:{trigger:'.wheel-stage', start:'top 78%'}});
-
-    var sparkLayer  = document.getElementById('wheel-spark-layer');
-    var stageEl     = document.querySelector('.wheel-stage');
-    var lastSparkMs = 0;
-    var PETAL_COLORS = ['#3c071b','#1a0a52','#7a4a00','#263e0f','#551029','#a96800'];
-    var PETAL_PATHS  = [
-      'M10 0 C15 4,18 14,10 20 C2 14,5 4,10 0Z',
-      'M8 0 C14 3,16 12,8 20 C0 12,2 3,8 0Z',
-      'M10 0 C16 5,14 16,10 20 C6 16,4 5,10 0Z'
-    ];
-
-    function spawnWheelSparks(scrollVel){
-      var now  = performance.now();
-      var absV = Math.abs(scrollVel);
-      var gap  = Math.max(16, 90 - absV * 0.06);
-      if(now - lastSparkMs < gap) return;
-      lastSparkMs = now;
-
-      var sw   = stageEl.offsetWidth;
-      var sh   = stageEl.offsetHeight;
-      var cx   = sw / 2;
-      var cy   = sh / 2;
-      var r    = Math.min(340, window.innerWidth * 0.38);
-      var cnt  = Math.min(8, 2 + Math.floor(absV / 200));
-
-      for(var k = 0; k < cnt; k++){
-        (function(){
-          var angle = Math.random() * Math.PI * 2;
-          var rOff  = (Math.random() - 0.5) * 60;
-          var sx    = cx + Math.cos(angle) * (r + rOff);
-          var sy    = cy + Math.sin(angle) * (r + rOff);
-          var size  = 18 + Math.random() * 14;
-          var color = PETAL_COLORS[Math.floor(Math.random()*PETAL_COLORS.length)];
-          var pPath = PETAL_PATHS[Math.floor(Math.random()*PETAL_PATHS.length)];
-
-          var el = document.createElement('div');
-          el.className = 'wheel-spark';
-          el.style.cssText = 'width:'+size+'px;height:'+size+'px;left:'+(sx-size/2)+'px;top:'+(sy-size/2)+'px;opacity:.85';
-          el.innerHTML = '<svg viewBox="0 0 20 20"><path d="'+pPath+'" fill="'+color+'" opacity=".8"/></svg>';
-          sparkLayer.appendChild(el);
-
-          var outA = Math.atan2(sy - cy, sx - cx);
-          var dist = 55 + Math.random() * 90;
-          var flyX = Math.cos(outA) * dist;
-          var flyY = Math.sin(outA) * dist - (20 + Math.random() * 40);
-
-          gsap.fromTo(el,
-            {opacity:.85, scale:1, x:0, y:0, rotate:Math.random()*360},
-            {opacity:0, scale:0.3,
-             x:flyX, y:flyY,
-             rotate:'+='+(Math.random()*400-200),
-             duration:0.7+Math.random()*0.6,
-             ease:'power1.out',
-             onComplete:function(){ if(el.parentNode) el.parentNode.removeChild(el); }
-            });
-        })();
-      }
-    }
-
-    var wheelTL = gsap.timeline({
-      scrollTrigger:{
-        trigger:'.wheel-stage', start:'top bottom', end:'bottom top', scrub:1.2
-      }
+/* ── GALERÍA ROMÁNTICA ──────────────────────────────── */
+function initGallery(){
+  var items = document.querySelectorAll('.gal-item');
+  if(!items.length) return;
+  items.forEach(function(item, i){
+    gsap.to(item, {
+      opacity:1, y:0, duration:1, delay:i*0.08,
+      ease:'power2.out',
+      scrollTrigger:{ trigger:item, start:'top 88%', once:true }
     });
-    wheelTL.to(wheel, {rotation:360, ease:'none'}, 0);
-    wheelTL.to(wheelItems, {rotation:-360, ease:'none'}, 0);
-
-    ScrollTrigger.create({
-      trigger:'.wheel-stage', start:'top bottom', end:'bottom top',
-      onUpdate:function(self){
-        var v = self.getVelocity();
-        if(Math.abs(v) > 20) spawnWheelSparks(v);
-      }
-    });
-  }
-
+  });
 }
 
 /* ── LIGHTBOX ───────────────────────────────────────── */
@@ -1724,8 +1550,9 @@ function initLightbox(){
       }});
   }
 
-  document.querySelectorAll('.wheel-item-inner').forEach(function(el){
+  document.querySelectorAll('.gal-item').forEach(function(el){
     var img = el.querySelector('img'); if(!img) return;
+    el.style.cursor = 'zoom-in';
     el.addEventListener('click', function(e){
       e.preventDefault(); e.stopPropagation();
       openLightbox(img.currentSrc || img.src, img.alt);
