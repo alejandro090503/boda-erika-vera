@@ -1303,6 +1303,16 @@ function dismissLoader() {
   const el = document.getElementById('loader');
   if (!el || el.classList.contains('ld-out')) return;
   el.classList.add('ld-out');
+  // Iniciar música aprovechando el gesto del usuario
+  const bgm = document.getElementById('bgMusic');
+  if (bgm) {
+    bgm.play().then(() => {
+      document.getElementById('music-btn').classList.add('playing');
+      document.getElementById('music-btn').setAttribute('aria-label','Pausar música');
+      document.getElementById('music-icon-play').style.display  = 'none';
+      document.getElementById('music-icon-pause').style.display = '';
+    }).catch(() => {});
+  }
   el.addEventListener('animationend', () => {
     el.style.display = 'none';
     heroAnim();
