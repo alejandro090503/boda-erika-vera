@@ -46,113 +46,78 @@ section{padding:64px 22px}
 
 /* ── LOADER ───────────────────────────────────────────── */
 #loader{
-  position:fixed;inset:0;z-index:9999;
-  background:#0a0607;
+  position:fixed;inset:0;z-index:9999;background:#0a0607;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  overflow:hidden;
+  overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent;
 }
-.ld-bg{
-  position:absolute;inset:0;
-  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464668531-0.jpeg') 42% 8%/cover no-repeat;
-  opacity:0;animation:ldBgIn 1.6s ease .1s forwards;
-}
-.ld-overlay{
-  position:absolute;inset:0;
+/* Reusar clases del hero; sobreescribir lo que difiere */
+#loader .h-bg{animation:ldBgIn 1.6s ease forwards}
+#loader .h-ov{
   background:
-    radial-gradient(ellipse 100% 70% at 50% 38%, rgba(60,7,27,.08) 0%, rgba(10,4,8,.68) 100%),
-    linear-gradient(to bottom, rgba(10,4,8,.60) 0%, rgba(10,4,8,.12) 38%, rgba(10,4,8,.55) 100%);
+    radial-gradient(ellipse 70% 55% at 50% 50%,
+      rgba(255,255,255,.76) 0%,
+      rgba(255,255,255,.48) 35%,
+      rgba(255,255,255,.12) 65%,
+      transparent 88%),
+    radial-gradient(ellipse 100% 100% at 50% 50%,
+      transparent 0%,
+      rgba(60,7,27,.28) 55%,
+      rgba(17,5,59,.48) 78%,
+      rgba(10,6,16,.76) 100%);
 }
-.ld-content{
-  position:relative;z-index:2;
-  display:flex;flex-direction:column;align-items:center;
-  width:100%;padding:0 22px;
-  gap:0;
+#loader .h-frame{opacity:0;animation:ldFade .9s ease .5s forwards}
+#loader .h-frame::before,#loader .h-frame::after{background:transparent}
+#loader .gline::after{background:transparent}
+#loader .h-rings{opacity:0;animation:ldFade 1s ease .3s forwards}
+#loader .h-cnt{opacity:0;animation:ldUp 1s ease .6s forwards}
+.ld-tap{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:10px;z-index:3;
+  opacity:0;animation:ldFade .8s ease 1.4s forwards;pointer-events:none;
 }
-.ld-orn{
-  opacity:0;margin-bottom:20px;
-  animation:ldUp .9s ease .4s forwards;
+.ld-tap span{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--peach);opacity:.8}
+.ld-tap-line{
+  width:1px;height:36px;
+  background:linear-gradient(to bottom,var(--peach),transparent);
+  transform-origin:top;animation:ldTapLine 2s ease-in-out 2s infinite;
 }
-.ld-names{
-  font-family:'Great Vibes',cursive;
-  font-size:clamp(48px,13vw,64px);
-  color:#faf8f3;line-height:1.2;text-align:center;
-  text-shadow:0 2px 28px rgba(0,0,0,.65), 0 0 80px rgba(189,139,45,.18);
-  opacity:0;animation:ldUp 1s ease .7s forwards;
-}
-.ld-divider{
-  width:72px;height:1px;margin:18px auto 0;
-  background:linear-gradient(to right,transparent,rgba(189,139,45,.72),transparent);
-  opacity:0;animation:ldFade .8s ease 1.05s forwards;
-}
-.ld-date{
-  font-family:'Cormorant Garamond',serif;
-  font-size:11px;letter-spacing:5px;text-transform:uppercase;
-  color:rgba(250,248,243,.62);
-  margin-top:14px;
-  opacity:0;animation:ldUp .8s ease 1.15s forwards;
-}
-.ld-btn{
-  position:relative;
-  margin-top:40px;
-  padding:16px 48px;border-radius:60px;
-  border:1px solid rgba(189,139,45,.60);
-  background:rgba(189,139,45,.08);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;
-  letter-spacing:4px;text-transform:uppercase;
-  color:#faf8f3;cursor:pointer;
-  opacity:0;animation:ldFade .9s ease 1.55s forwards;
-  transition:background .3s,border-color .3s,box-shadow .3s;
-  -webkit-tap-highlight-color:transparent;
-}
-.ld-btn::before{
-  content:'';position:absolute;inset:-4px;border-radius:64px;
-  border:1px solid rgba(189,139,45,.22);
-  animation:ldBreathe 2.6s ease-in-out 2.2s infinite;
-  pointer-events:none;
-}
-.ld-btn:active{
-  background:rgba(189,139,45,.20);
-  border-color:rgba(189,139,45,.9);
-  box-shadow:0 0 32px rgba(189,139,45,.28);
-  transform:scale(.97);
-}
-.ld-orn-bot{
-  margin-top:28px;
-  opacity:0;animation:ldFade .8s ease 1.8s forwards;
-}
+@keyframes ldTapLine{0%{transform:scaleY(0);opacity:1}80%{transform:scaleY(1);opacity:.7}100%{transform:scaleY(1);opacity:0}}
 .ld-video-layer{
   position:absolute;inset:0;z-index:5;
-  opacity:0;pointer-events:none;
-  transition:opacity .4s ease;
+  opacity:0;pointer-events:none;transition:opacity .4s ease;
 }
 .ld-video-layer.active{opacity:1;pointer-events:auto}
 .ld-sobre-video{width:100%;height:100%;object-fit:cover;background:#0a0607}
-@keyframes ldFade{from{opacity:0}to{opacity:1}}
 @keyframes ldBgIn{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:scale(1)}}
-@keyframes ldUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-@keyframes ldBreathe{
-  0%,100%{transform:scale(1);opacity:.45}
-  50%{transform:scale(1.12);opacity:0}
-}
-#loader.dismissing{
-  opacity:0;transform:scale(1.05);
-  transition:opacity .9s ease,transform .9s ease;
-}
+@keyframes ldFade{from{opacity:0}to{opacity:1}}
+@keyframes ldUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+#loader.dismissing{opacity:0;transform:scale(1.04);transition:opacity .9s ease,transform .9s ease}
 
-/* ── MUSIC PLAYER ────────────────────────────────────── */
+/* ── MUSIC PLAYER — DISCO DE VINIL ───────────────────── */
 #music-btn{
-  position:fixed;bottom:24px;right:24px;z-index:900;
-  width:48px;height:48px;border-radius:50%;border:1px solid rgba(189,139,45,.40);
-  background:rgba(26,20,16,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  position:fixed;bottom:22px;right:22px;z-index:900;
+  width:54px;height:54px;border-radius:50%;border:none;background:none;
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;box-shadow:0 4px 20px rgba(0,0,0,.35);
-  transition:transform .3s ease,border-color .3s ease;
+  cursor:pointer;padding:0;overflow:visible;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .3s var(--spring);
 }
-#music-btn:hover{transform:scale(1.08);border-color:var(--peach-accent)}
-#music-btn svg{width:18px;height:18px;fill:var(--peach-accent);transition:fill .3s ease}
-#music-btn.playing{animation:musicPulse 2s ease-in-out infinite}
-@keyframes musicPulse{0%,100%{box-shadow:0 4px 20px rgba(0,0,0,.35)}50%{box-shadow:0 4px 24px rgba(201,60,24,.25)}}
+#music-btn:active{transform:scale(.92)}
+#vinyl-disc{
+  width:54px;height:54px;border-radius:50%;flex-shrink:0;
+  box-shadow:0 4px 18px rgba(0,0,0,.5);
+  transition:box-shadow .3s ease;
+}
+#music-btn.playing #vinyl-disc{
+  animation:vinylSpin 2.4s linear infinite;
+  box-shadow:0 4px 22px rgba(189,139,45,.4),0 0 0 2px rgba(189,139,45,.3);
+}
+@keyframes vinylSpin{to{transform:rotate(360deg)}}
+.vinyl-icon{
+  position:absolute;pointer-events:none;
+  display:flex;align-items:center;justify-content:center;
+}
+.vinyl-icon svg{width:13px;height:13px;fill:#faf8f3;filter:drop-shadow(0 1px 4px rgba(0,0,0,.8))}
 
 /* ── PROGRESS BAR ─────────────────────────────────────── */
 #prog{
@@ -714,27 +679,40 @@ section{position:relative}
 </head>
 <body>
 
-<!-- LOADER -->
-<div id="loader">
-  <div class="ld-bg" aria-hidden="true"></div>
-  <div class="ld-overlay" aria-hidden="true"></div>
-  <div class="ld-content">
-    <!-- ornamento superior -->
-    <svg class="ld-orn" width="130" height="18" viewBox="0 0 130 18" fill="none" aria-hidden="true">
-      <line x1="0" y1="9" x2="52" y2="9" stroke="rgba(189,139,45,0.52)" stroke-width="0.75"/>
-      <path d="M60 3 L65 9 L60 15 L55 9 Z" fill="none" stroke="rgba(189,139,45,0.75)" stroke-width="0.8"/>
-      <line x1="78" y1="9" x2="130" y2="9" stroke="rgba(189,139,45,0.52)" stroke-width="0.75"/>
-    </svg>
-    <div class="ld-names">Erika &amp;<br>Alberto</div>
-    <div class="ld-divider"></div>
-    <p class="ld-date">31 · Octubre · 2026</p>
-    <button class="ld-btn" onclick="openEnvelope()">Toca para abrir</button>
-    <!-- ornamento inferior -->
-    <svg class="ld-orn-bot" width="48" height="18" viewBox="0 0 48 18" fill="none" aria-hidden="true">
-      <line x1="0" y1="9" x2="19" y2="9" stroke="rgba(189,139,45,0.38)" stroke-width="0.6"/>
-      <circle cx="24" cy="9" r="2.5" fill="none" stroke="rgba(189,139,45,0.6)" stroke-width="0.7"/>
-      <line x1="29" y1="9" x2="48" y2="9" stroke="rgba(189,139,45,0.38)" stroke-width="0.6"/>
-    </svg>
+<!-- LOADER — replica visual del hero -->
+<div id="loader" onclick="openEnvelope()">
+  <div class="h-bg" aria-hidden="true">
+    <img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464668531-0.jpeg"
+         alt="Erika y Alberto" loading="eager">
+  </div>
+  <div class="h-ov ld-overlay" aria-hidden="true"></div>
+  <div class="h-frame" aria-hidden="true"></div>
+  <div class="h-rings" aria-hidden="true">
+    <div class="h-ring h-ring-1"></div>
+    <div class="h-ring h-ring-2"></div>
+    <div class="h-ring h-ring-3"></div>
+  </div>
+  <div class="h-cnt ld-content">
+    <div class="h-name-wrap">
+      <span class="h-name-wind-line"></span>
+      <div class="h-clip"><span class="h-name">Erika</span></div>
+      <span class="h-name-wind-line"></span>
+    </div>
+    <div class="h-amp-clip"><span class="h-amp">&amp;</span></div>
+    <div class="h-name-wrap">
+      <span class="h-name-wind-line"></span>
+      <div class="h-clip"><span class="h-name">Alberto</span></div>
+      <span class="h-name-wind-line"></span>
+    </div>
+    <div class="gline" style="margin-top:32px"></div>
+    <div class="h-date-wrap">
+      <p class="h-date">31 · Octubre · 2026</p>
+      <p class="h-city">Querétaro · México</p>
+    </div>
+  </div>
+  <div class="ld-tap">
+    <div class="ld-tap-line"></div>
+    <span>Toca para abrir</span>
   </div>
   <div class="ld-video-layer" id="videoLayer">
     <video class="ld-sobre-video" id="sobreVideo" src="sobre.mp4" muted playsinline preload="auto"></video>
@@ -747,8 +725,33 @@ section{position:relative}
 <!-- AUDIO -->
 <audio id="bgMusic" loop preload="auto"><source src="song.mp3" type="audio/mpeg"></audio>
 <button id="music-btn" aria-label="Pausar música" onclick="toggleMusic()">
-  <svg id="music-icon-play" viewBox="0 0 24 24" style="display:none"><polygon points="6,4 20,12 6,20"/></svg>
-  <svg id="music-icon-pause" viewBox="0 0 24 24"><rect x="5" y="4" width="4" height="16"/><rect x="15" y="4" width="4" height="16"/></svg>
+  <!-- Disco de vinil SVG -->
+  <svg id="vinyl-disc" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <!-- Base del disco negro -->
+    <circle cx="27" cy="27" r="27" fill="#1a1410"/>
+    <!-- Surcos del vinil (anillos concéntricos) -->
+    <circle cx="27" cy="27" r="24.5" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+    <circle cx="27" cy="27" r="22"   fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+    <circle cx="27" cy="27" r="19.5" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+    <circle cx="27" cy="27" r="17"   fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+    <circle cx="27" cy="27" r="14.5" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
+    <circle cx="27" cy="27" r="12"   fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+    <!-- Etiqueta central dorada -->
+    <circle cx="27" cy="27" r="9" fill="#bd8b2d"/>
+    <circle cx="27" cy="27" r="8.2" fill="none" stroke="rgba(255,255,255,.20)" stroke-width="0.6"/>
+    <!-- Texto en la etiqueta -->
+    <text x="27" y="25.5" text-anchor="middle" font-family="serif" font-size="3.2" fill="rgba(26,20,16,.9)" font-style="italic">Erika &amp;</text>
+    <text x="27" y="29.5" text-anchor="middle" font-family="serif" font-size="3.2" fill="rgba(26,20,16,.9)" font-style="italic">Alberto</text>
+    <!-- Agujero central -->
+    <circle cx="27" cy="27" r="1.8" fill="#1a1410"/>
+    <!-- Destello sutil -->
+    <ellipse cx="20" cy="16" rx="5" ry="2.5" fill="rgba(255,255,255,.04)" transform="rotate(-30 20 16)"/>
+  </svg>
+  <!-- Icono play/pause superpuesto -->
+  <span class="vinyl-icon">
+    <svg id="music-icon-play" viewBox="0 0 24 24" style="display:none"><polygon points="7,5 20,12 7,19"/></svg>
+    <svg id="music-icon-pause" viewBox="0 0 24 24"><rect x="5" y="4" width="4" height="16"/><rect x="15" y="4" width="4" height="16"/></svg>
+  </span>
 </button>
 
 <!-- TOAST -->
