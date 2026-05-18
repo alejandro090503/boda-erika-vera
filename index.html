@@ -44,80 +44,35 @@ body{
 }
 section{padding:64px 22px}
 
-/* ── LOADER ───────────────────────────────────────────── */
-#loader{
-  position:fixed;inset:0;z-index:9999;background:#0a0607;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  overflow:hidden;cursor:pointer;-webkit-tap-highlight-color:transparent;
-}
-/* Reusar clases del hero; sobreescribir lo que difiere */
-#loader .h-bg{animation:ldBgIn 1.6s ease forwards}
-#loader .h-ov{
-  background:
-    radial-gradient(ellipse 70% 55% at 50% 50%,
-      rgba(255,255,255,.76) 0%,
-      rgba(255,255,255,.48) 35%,
-      rgba(255,255,255,.12) 65%,
-      transparent 88%),
-    radial-gradient(ellipse 100% 100% at 50% 50%,
-      transparent 0%,
-      rgba(60,7,27,.28) 55%,
-      rgba(17,5,59,.48) 78%,
-      rgba(10,6,16,.76) 100%);
-}
-#loader .h-frame{opacity:0;animation:ldFade .9s ease .5s forwards}
-#loader .h-frame::before,#loader .h-frame::after{background:transparent}
-#loader .gline::after{background:transparent}
-#loader .h-rings{opacity:0;animation:ldFade 1s ease .3s forwards}
-#loader .h-cnt{opacity:0;animation:ldUp 1s ease .6s forwards}
-.ld-tap{
-  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:10px;z-index:3;
-  opacity:0;animation:ldFade .8s ease 1.4s forwards;pointer-events:none;
-}
-.ld-tap span{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--peach);opacity:.8}
-.ld-tap-line{
-  width:1px;height:36px;
-  background:linear-gradient(to bottom,var(--peach),transparent);
-  transform-origin:top;animation:ldTapLine 2s ease-in-out 2s infinite;
-}
-@keyframes ldTapLine{0%{transform:scaleY(0);opacity:1}80%{transform:scaleY(1);opacity:.7}100%{transform:scaleY(1);opacity:0}}
-.ld-video-layer{
-  position:absolute;inset:0;z-index:5;
-  opacity:0;pointer-events:none;transition:opacity .4s ease;
-}
-.ld-video-layer.active{opacity:1;pointer-events:auto}
-.ld-sobre-video{width:100%;height:100%;object-fit:cover;background:#0a0607}
-@keyframes ldBgIn{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:scale(1)}}
-@keyframes ldFade{from{opacity:0}to{opacity:1}}
-@keyframes ldUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-#loader.dismissing{opacity:0;transform:scale(1.04);transition:opacity .9s ease,transform .9s ease}
 
 /* ── MUSIC PLAYER — DISCO DE VINIL ───────────────────── */
 #music-btn{
   position:fixed;bottom:22px;right:22px;z-index:900;
-  width:54px;height:54px;border-radius:50%;border:none;background:none;
+  width:52px;height:52px;border-radius:50%;border:none;background:none;
   display:flex;align-items:center;justify-content:center;
-  cursor:pointer;padding:0;overflow:visible;
+  cursor:pointer;padding:0;
   -webkit-tap-highlight-color:transparent;
   transition:transform .3s var(--spring);
+  filter:drop-shadow(0 4px 12px rgba(0,0,0,.55));
 }
-#music-btn:active{transform:scale(.92)}
+#music-btn:active{transform:scale(.9)}
 #vinyl-disc{
-  width:54px;height:54px;border-radius:50%;flex-shrink:0;
-  box-shadow:0 4px 18px rgba(0,0,0,.5);
-  transition:box-shadow .3s ease;
+  width:52px;height:52px;
+  border-radius:50%;
+  overflow:hidden;
+  flex-shrink:0;
+  transition:filter .3s ease;
 }
 #music-btn.playing #vinyl-disc{
-  animation:vinylSpin 2.4s linear infinite;
-  box-shadow:0 4px 22px rgba(189,139,45,.4),0 0 0 2px rgba(189,139,45,.3);
+  animation:vinylSpin 2s linear infinite;
+  filter:drop-shadow(0 0 6px rgba(189,139,45,.5));
 }
 @keyframes vinylSpin{to{transform:rotate(360deg)}}
 .vinyl-icon{
   position:absolute;pointer-events:none;
   display:flex;align-items:center;justify-content:center;
 }
-.vinyl-icon svg{width:13px;height:13px;fill:#faf8f3;filter:drop-shadow(0 1px 4px rgba(0,0,0,.8))}
+.vinyl-icon svg{width:12px;height:12px;fill:#faf8f3;filter:drop-shadow(0 1px 3px rgba(0,0,0,.9))}
 
 /* ── PROGRESS BAR ─────────────────────────────────────── */
 #prog{
@@ -679,78 +634,46 @@ section{position:relative}
 </head>
 <body>
 
-<!-- LOADER — replica visual del hero -->
-<div id="loader" onclick="openEnvelope()">
-  <div class="h-bg" aria-hidden="true">
-    <img src="https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464668531-0.jpeg"
-         alt="Erika y Alberto" loading="eager">
-  </div>
-  <div class="h-ov ld-overlay" aria-hidden="true"></div>
-  <div class="h-frame" aria-hidden="true"></div>
-  <div class="h-rings" aria-hidden="true">
-    <div class="h-ring h-ring-1"></div>
-    <div class="h-ring h-ring-2"></div>
-    <div class="h-ring h-ring-3"></div>
-  </div>
-  <div class="h-cnt ld-content">
-    <div class="h-name-wrap">
-      <span class="h-name-wind-line"></span>
-      <div class="h-clip"><span class="h-name">Erika</span></div>
-      <span class="h-name-wind-line"></span>
-    </div>
-    <div class="h-amp-clip"><span class="h-amp">&amp;</span></div>
-    <div class="h-name-wrap">
-      <span class="h-name-wind-line"></span>
-      <div class="h-clip"><span class="h-name">Alberto</span></div>
-      <span class="h-name-wind-line"></span>
-    </div>
-    <div class="gline" style="margin-top:32px"></div>
-    <div class="h-date-wrap">
-      <p class="h-date">31 · Octubre · 2026</p>
-      <p class="h-city">Querétaro · México</p>
-    </div>
-  </div>
-  <div class="ld-tap">
-    <div class="ld-tap-line"></div>
-    <span>Toca para abrir</span>
-  </div>
-  <div class="ld-video-layer" id="videoLayer">
-    <video class="ld-sobre-video" id="sobreVideo" src="sobre.mp4" muted playsinline preload="auto"></video>
-  </div>
-</div>
 
 <!-- PROGRESS BAR -->
 <div id="prog"></div>
 
 <!-- AUDIO -->
 <audio id="bgMusic" loop preload="auto"><source src="song.mp3" type="audio/mpeg"></audio>
-<button id="music-btn" aria-label="Pausar música" onclick="toggleMusic()">
-  <!-- Disco de vinil SVG -->
-  <svg id="vinyl-disc" viewBox="0 0 54 54" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-    <!-- Base del disco negro -->
-    <circle cx="27" cy="27" r="27" fill="#1a1410"/>
-    <!-- Surcos del vinil (anillos concéntricos) -->
-    <circle cx="27" cy="27" r="24.5" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-    <circle cx="27" cy="27" r="22"   fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-    <circle cx="27" cy="27" r="19.5" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-    <circle cx="27" cy="27" r="17"   fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-    <circle cx="27" cy="27" r="14.5" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="1"/>
-    <circle cx="27" cy="27" r="12"   fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
-    <!-- Etiqueta central dorada -->
-    <circle cx="27" cy="27" r="9" fill="#bd8b2d"/>
-    <circle cx="27" cy="27" r="8.2" fill="none" stroke="rgba(255,255,255,.20)" stroke-width="0.6"/>
-    <!-- Texto en la etiqueta -->
-    <text x="27" y="25.5" text-anchor="middle" font-family="serif" font-size="3.2" fill="rgba(26,20,16,.9)" font-style="italic">Erika &amp;</text>
-    <text x="27" y="29.5" text-anchor="middle" font-family="serif" font-size="3.2" fill="rgba(26,20,16,.9)" font-style="italic">Alberto</text>
-    <!-- Agujero central -->
-    <circle cx="27" cy="27" r="1.8" fill="#1a1410"/>
-    <!-- Destello sutil -->
-    <ellipse cx="20" cy="16" rx="5" ry="2.5" fill="rgba(255,255,255,.04)" transform="rotate(-30 20 16)"/>
-  </svg>
-  <!-- Icono play/pause superpuesto -->
+<button id="music-btn" aria-label="Reproducir música" onclick="toggleMusic()">
+  <div id="vinyl-disc">
+    <svg viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg" width="52" height="52" aria-hidden="true">
+      <defs>
+        <radialGradient id="vg" cx="40%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#2a2420"/>
+          <stop offset="100%" stop-color="#0e0a08"/>
+        </radialGradient>
+        <radialGradient id="lg" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#d4a040"/>
+          <stop offset="100%" stop-color="#9a6a1a"/>
+        </radialGradient>
+      </defs>
+      <!-- Fondo circular del disco -->
+      <circle cx="26" cy="26" r="26" fill="url(#vg)"/>
+      <!-- Surcos (grooves) concéntricos -->
+      <circle cx="26" cy="26" r="23.5" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="0.8"/>
+      <circle cx="26" cy="26" r="21.5" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="0.8"/>
+      <circle cx="26" cy="26" r="19.5" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="0.8"/>
+      <circle cx="26" cy="26" r="17.5" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="0.8"/>
+      <circle cx="26" cy="26" r="15.5" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="0.8"/>
+      <circle cx="26" cy="26" r="13.5" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="0.8"/>
+      <!-- Reflejo sutil del disco -->
+      <ellipse cx="18" cy="14" rx="7" ry="3" fill="rgba(255,255,255,.04)" transform="rotate(-35 18 14)"/>
+      <!-- Etiqueta central dorada -->
+      <circle cx="26" cy="26" r="10" fill="url(#lg)"/>
+      <circle cx="26" cy="26" r="9.3" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="0.5"/>
+      <!-- Agujero central -->
+      <circle cx="26" cy="26" r="2" fill="#0e0a08"/>
+    </svg>
+  </div>
   <span class="vinyl-icon">
-    <svg id="music-icon-play" viewBox="0 0 24 24" style="display:none"><polygon points="7,5 20,12 7,19"/></svg>
-    <svg id="music-icon-pause" viewBox="0 0 24 24"><rect x="5" y="4" width="4" height="16"/><rect x="15" y="4" width="4" height="16"/></svg>
+    <svg id="music-icon-play" viewBox="0 0 24 24"><polygon points="7,5 20,12 7,19"/></svg>
+    <svg id="music-icon-pause" viewBox="0 0 24 24" style="display:none"><rect x="5" y="4" width="4" height="16"/><rect x="15" y="4" width="4" height="16"/></svg>
   </span>
 </button>
 
@@ -1180,52 +1103,16 @@ section{position:relative}
 /* ── BOOT ─────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
   gsap.registerPlugin(ScrollTrigger);
-
-  // RSVP: leer pases desde URL
   initRSVP();
-
-  // Cuenta regresiva arranca de inmediato
   countdown();
   setInterval(countdown, 1000);
-
+  addSectionMedals();
+  addCorners();
+  addWindOrns();
+  addAuras();
+  heroAnim();
+  scrollAnims();
 });
-
-let envelopeOpened = false;
-function openEnvelope() {
-  if (envelopeOpened) return;
-  envelopeOpened = true;
-  const content = document.querySelector('.ld-content');
-  const overlay = document.querySelector('.ld-overlay');
-  const layer = document.getElementById('videoLayer');
-  const vid = document.getElementById('sobreVideo');
-  if (content) { content.style.transition = 'opacity .4s ease'; content.style.opacity = '0'; content.style.pointerEvents = 'none'; }
-  if (overlay) { overlay.style.transition = 'opacity .5s ease'; overlay.style.opacity = '0'; }
-
-  if (!vid) { setTimeout(dismissLoader, 600); return; }
-
-  // Always call play() synchronously inside the user tap handler (iOS requirement)
-  var playPromise = vid.play();
-
-  layer.classList.add('active');
-
-  if (playPromise !== undefined) {
-    playPromise.then(function() {
-      vid.addEventListener('ended', function() {
-        setTimeout(dismissLoader, 400);
-      }, { once: true });
-    }).catch(function() {
-      // play failed (not loaded, blocked, etc) — skip to invitation
-      setTimeout(dismissLoader, 600);
-    });
-  } else {
-    vid.addEventListener('ended', function() {
-      setTimeout(dismissLoader, 400);
-    }, { once: true });
-  }
-
-  // Safety: if video doesn't end in 15s, dismiss anyway
-  setTimeout(function() { if (document.getElementById('loader')) dismissLoader(); }, 15000);
-}
 
 function toggleMusic() {
   const a = document.getElementById('bgMusic');
@@ -1245,31 +1132,6 @@ function toggleMusic() {
   }
 }
 
-function dismissLoader() {
-  const loader = document.getElementById('loader');
-  if (!loader) return;
-  const bgm = document.getElementById('bgMusic');
-  if (bgm) bgm.play().then(() => {
-    document.getElementById('music-btn').classList.add('playing');
-  }).catch(() => {});
-  loader.classList.add('dismissing');
-  function finishDismiss() {
-    if (!document.getElementById('loader')) return;
-    loader.remove();
-    addSectionMedals();
-    addCorners();
-    addWindOrns();
-    addAuras();
-    heroAnim();
-    scrollAnims();
-  }
-  loader.addEventListener('transitionend', function handler(e) {
-    if (e.propertyName !== 'opacity') return;
-    loader.removeEventListener('transitionend', handler);
-    finishDismiss();
-  });
-  setTimeout(finishDismiss, 1200);
-}
 
 /* ── SCROLL PROGRESS ─────────────────────────────────── */
 window.addEventListener('scroll', () => {
