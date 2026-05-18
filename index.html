@@ -47,50 +47,79 @@ section{padding:64px 22px}
 /* ── LOADER ───────────────────────────────────────────── */
 #loader{
   position:fixed;inset:0;z-index:9999;
-  background:#1a1410;
+  background:#0a0607;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   overflow:hidden;
 }
 .ld-bg{
   position:absolute;inset:0;
-  background:url('sobre.png') center/cover no-repeat;
-  opacity:0;animation:ldFade 1.2s ease .2s forwards;
+  background:url('https://bsjoelxktbvlavfoozhk.supabase.co/storage/v1/object/public/fotos-clientes/3d48e43e-53d5-4b46-ae7b-8dd67002f790/1778464668531-0.jpeg') 42% 8%/cover no-repeat;
+  opacity:0;animation:ldBgIn 1.6s ease .1s forwards;
 }
 .ld-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to bottom,rgba(26,20,16,.15) 0%,rgba(26,20,16,.45) 50%,rgba(26,20,16,.85) 100%);
+  background:
+    radial-gradient(ellipse 100% 70% at 50% 38%, rgba(60,7,27,.08) 0%, rgba(10,4,8,.68) 100%),
+    linear-gradient(to bottom, rgba(10,4,8,.60) 0%, rgba(10,4,8,.12) 38%, rgba(10,4,8,.55) 100%);
 }
-.ld-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:18px;margin-top:auto;padding-bottom:clamp(60px,14vh,120px)}
+.ld-content{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;
+  width:100%;padding:0 22px;
+  gap:0;
+}
+.ld-orn{
+  opacity:0;margin-bottom:20px;
+  animation:ldUp .9s ease .4s forwards;
+}
 .ld-names{
-  font-family:'Great Vibes',cursive;font-size:52px;color:#faf8f3;
-  text-shadow:0 2px 20px rgba(0,0,0,.5);
-  opacity:0;animation:ldFade 1s ease .6s forwards;
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(48px,13vw,64px);
+  color:#faf8f3;line-height:1.2;text-align:center;
+  text-shadow:0 2px 28px rgba(0,0,0,.65), 0 0 80px rgba(189,139,45,.18);
+  opacity:0;animation:ldUp 1s ease .7s forwards;
+}
+.ld-divider{
+  width:72px;height:1px;margin:18px auto 0;
+  background:linear-gradient(to right,transparent,rgba(189,139,45,.72),transparent);
+  opacity:0;animation:ldFade .8s ease 1.05s forwards;
 }
 .ld-date{
-  font-size:11px;letter-spacing:5px;text-transform:uppercase;color:rgba(250,248,243,.6);
-  opacity:0;animation:ldFade .8s ease .9s forwards;
+  font-family:'Cormorant Garamond',serif;
+  font-size:11px;letter-spacing:5px;text-transform:uppercase;
+  color:rgba(250,248,243,.62);
+  margin-top:14px;
+  opacity:0;animation:ldUp .8s ease 1.15s forwards;
 }
 .ld-btn{
-  margin-top:12px;
-  padding:14px 38px;border-radius:40px;
-  border:1px solid rgba(189,139,45,.5);
-  background:rgba(189,139,45,.12);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:500;letter-spacing:3px;text-transform:uppercase;
+  position:relative;
+  margin-top:40px;
+  padding:16px 48px;border-radius:60px;
+  border:1px solid rgba(189,139,45,.60);
+  background:rgba(189,139,45,.08);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:500;
+  letter-spacing:4px;text-transform:uppercase;
   color:#faf8f3;cursor:pointer;
-  opacity:0;animation:ldFade .8s ease 1.3s forwards;
-  transition:background .3s,border-color .3s,transform .2s;
+  opacity:0;animation:ldFade .9s ease 1.55s forwards;
+  transition:background .3s,border-color .3s,box-shadow .3s;
+  -webkit-tap-highlight-color:transparent;
 }
-.ld-btn:hover{background:rgba(189,139,45,.22);border-color:var(--peach-accent);transform:scale(1.03)}
-.ld-btn::after{
-  content:'';display:block;position:absolute;inset:-1px;border-radius:40px;
-  border:1px solid rgba(189,139,45,.3);
-  animation:ldBreathe 2.4s ease-in-out 1.5s infinite;
+.ld-btn::before{
+  content:'';position:absolute;inset:-4px;border-radius:64px;
+  border:1px solid rgba(189,139,45,.22);
+  animation:ldBreathe 2.6s ease-in-out 2.2s infinite;
   pointer-events:none;
 }
-.ld-btn{position:relative;overflow:visible}
-@keyframes ldBreathe{
-  0%,100%{transform:scale(1);opacity:.6}
-  50%{transform:scale(1.08);opacity:0}
+.ld-btn:active{
+  background:rgba(189,139,45,.20);
+  border-color:rgba(189,139,45,.9);
+  box-shadow:0 0 32px rgba(189,139,45,.28);
+  transform:scale(.97);
+}
+.ld-orn-bot{
+  margin-top:28px;
+  opacity:0;animation:ldFade .8s ease 1.8s forwards;
 }
 .ld-video-layer{
   position:absolute;inset:0;z-index:5;
@@ -98,12 +127,17 @@ section{padding:64px 22px}
   transition:opacity .4s ease;
 }
 .ld-video-layer.active{opacity:1;pointer-events:auto}
-.ld-sobre-video{width:100%;height:100%;object-fit:cover;background:#1a1410}
-@keyframes ldFade{to{opacity:1}}
+.ld-sobre-video{width:100%;height:100%;object-fit:cover;background:#0a0607}
+@keyframes ldFade{from{opacity:0}to{opacity:1}}
+@keyframes ldBgIn{from{opacity:0;transform:scale(1.06)}to{opacity:1;transform:scale(1)}}
+@keyframes ldUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ldBreathe{
+  0%,100%{transform:scale(1);opacity:.45}
+  50%{transform:scale(1.12);opacity:0}
+}
 #loader.dismissing{
-  opacity:0;
-  transform:scale(1.04);
-  transition:opacity .8s ease,transform .8s ease;
+  opacity:0;transform:scale(1.05);
+  transition:opacity .9s ease,transform .9s ease;
 }
 
 /* ── MUSIC PLAYER ────────────────────────────────────── */
@@ -685,9 +719,22 @@ section{position:relative}
   <div class="ld-bg" aria-hidden="true"></div>
   <div class="ld-overlay" aria-hidden="true"></div>
   <div class="ld-content">
-    <div class="ld-names">Erika &amp; Alberto</div>
+    <!-- ornamento superior -->
+    <svg class="ld-orn" width="130" height="18" viewBox="0 0 130 18" fill="none" aria-hidden="true">
+      <line x1="0" y1="9" x2="52" y2="9" stroke="rgba(189,139,45,0.52)" stroke-width="0.75"/>
+      <path d="M60 3 L65 9 L60 15 L55 9 Z" fill="none" stroke="rgba(189,139,45,0.75)" stroke-width="0.8"/>
+      <line x1="78" y1="9" x2="130" y2="9" stroke="rgba(189,139,45,0.52)" stroke-width="0.75"/>
+    </svg>
+    <div class="ld-names">Erika &amp;<br>Alberto</div>
+    <div class="ld-divider"></div>
     <p class="ld-date">31 · Octubre · 2026</p>
     <button class="ld-btn" onclick="openEnvelope()">Toca para abrir</button>
+    <!-- ornamento inferior -->
+    <svg class="ld-orn-bot" width="48" height="18" viewBox="0 0 48 18" fill="none" aria-hidden="true">
+      <line x1="0" y1="9" x2="19" y2="9" stroke="rgba(189,139,45,0.38)" stroke-width="0.6"/>
+      <circle cx="24" cy="9" r="2.5" fill="none" stroke="rgba(189,139,45,0.6)" stroke-width="0.7"/>
+      <line x1="29" y1="9" x2="48" y2="9" stroke="rgba(189,139,45,0.38)" stroke-width="0.6"/>
+    </svg>
   </div>
   <div class="ld-video-layer" id="videoLayer">
     <video class="ld-sobre-video" id="sobreVideo" src="sobre.mp4" muted playsinline preload="auto"></video>
