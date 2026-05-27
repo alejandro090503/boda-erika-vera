@@ -952,7 +952,6 @@ section{position:relative}
   </div>
 
   <p class="cd-date">31 de Octubre, 2026 &middot; 5:00 PM</p>
-  <div class="cd-orn" aria-hidden="true"><span>&#9830;</span></div>
 </section>
 
 
@@ -1246,7 +1245,7 @@ section{position:relative}
   </div>
 
   <!-- Mensaje emotivo -->
-  <div class="gf-card" style="cursor:default;background:transparent;border:none;box-shadow:none">
+  <div class="gf-card" style="cursor:default;background:rgba(242,232,224,.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)">
     <div class="gf-card-top">
       <div class="gf-logo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
@@ -1284,7 +1283,6 @@ section{position:relative}
 <!-- ════════════════ 11. FOOTER ═════════════════════════ -->
 <footer id="footer">
   <div class="sec-floral" style="background-image:url('./bg-vintage-6.jpeg');opacity:.55"></div>
-  <div class="ft-orn">✦ · ✦ · ✦</div>
   <div class="ft-nms">Erika &amp; Alberto</div>
   <div class="gline" style="margin-top:22px"></div>
   <p class="ft-dt">31 · Octubre · 2026</p>
@@ -1533,7 +1531,7 @@ function scrollAnims() {
 
 /* ── SECTION MEDALS ──────────────────────────────────── */
 function addSectionMedals() {
-  const map = { 'calendar':'✧', 'itinerary':'◆', 'qr-album':'✦', 'gifts':'✦', 'dresscode':'❁', 'rsvp':'✹' };
+  const map = {};
   Object.keys(map).forEach(id => {
     const sec = document.getElementById(id);
     if (!sec) return;
@@ -1567,23 +1565,8 @@ function addCorners() {
   });
 }
 
-/* ── WIND ORNAMENTS ──────────────────────────────────── */
-function addWindOrns() {
-  document.querySelectorAll('section').forEach(sec => {
-    const lbl = sec.querySelector('.lbl');
-    if (!lbl) return;
-    if (lbl.parentElement !== sec) return;
-    const orn = document.createElement('div');
-    orn.className = 'wind-orn';
-    orn.textContent = '✦';
-    gsap.set(orn, { opacity:0 });
-    sec.insertBefore(orn, lbl);
-    ScrollTrigger.create({
-      trigger:sec, start:'top 88%', once:true,
-      onEnter() { gsap.to(orn, { opacity:1, duration:.8, ease:'power2.out' }); }
-    });
-  });
-}
+/* ── WIND ORNAMENTS (disabled – single ornament policy) ── */
+function addWindOrns() {}
 
 /* ── SECTION AURAS ───────────────────────────────────── */
 function addAuras() {
